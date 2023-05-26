@@ -38,13 +38,13 @@ class NilaiAdd extends RestController {
                 'status' => 201,
                 'error' => false,
                 'message' => 'NEW Nilai Created',
-            ], REST_Controller::HTTP_CREATED);
+            ], RestController::HTTP_CREATED);
         } else {
             $this->response([
                 'status' => 404,
                 'error' => true,
                 'message' => 'FAILDE TO CREATE Nilai'
-            ], REST_Controller::HTTP_BAD_REQUEST);
+            ], RestController::HTTP_BAD_REQUEST);
         }
     
     }

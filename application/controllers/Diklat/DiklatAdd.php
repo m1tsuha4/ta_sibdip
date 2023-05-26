@@ -20,8 +20,8 @@ class DiklatAdd extends RestController {
         $diklat = new m_diklat;
 
         $i = $this->db->count_all('tb_assessment');
-        
-        //set rule validasi
+
+		//set rule validasi
         if ($this->_validationCheck() === FALSE) {
             $this->response([
                 'status' => 404,

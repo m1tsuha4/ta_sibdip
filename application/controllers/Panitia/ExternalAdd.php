@@ -58,7 +58,7 @@ public function AddExternal_post()
 
         //load Data 
         $insert_data = [
-            'pegawai_id'                => $asistent->idterurut($i),
+            'pegawai_id'                => $panitia->idterurut($i),
             'sort_id'                   => $this->post('sort_id', TRUE),
             'assistant'                 => $this->post('assistant', TRUE),
             'sort_number'               => $this->post('sort_number', TRUE),

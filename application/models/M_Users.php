@@ -58,7 +58,7 @@ class M_Users extends CI_Model
         INNER JOIN tb_kabupaten kb ON p.id_kabupaten = kb.id_kabupaten
         INNER JOIN tb_kecamatan kc ON p.id_kecamatan = kc.id_kecamatan
         INNER JOIN tb_kelurahan kl ON p.id_kelurahan = kl.id_kelurahan WHERE p.pegawai_id = '$id'";    
-        $this->db->or_like('p.pegawai_id',  $id);
+        $this->db->or_like('pegawai_id',  $id);
         $query = $this->db->query($sql)->result_array();
             
         return $query;

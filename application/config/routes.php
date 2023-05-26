@@ -32,28 +32,28 @@ $route['login']                                    = 'Auth/index';
 
 /* ROUTES RESTSERVER SI - BDIP - Pelatihan */
 
-//All User Pegawai dan AdminPd (sudah oke cuman masih perlu di perbaiki)
+//All User Pegawai dan AdminPd (oke)
 $route['user_all_list']                            = 'Users/UserListAll/index';
 $route['user_by_id/(:any)']                        = 'Users/UserGetId/UsersGetById/$1';
 $route['user_add']                                 = 'Users/UserAdd/AddUsers';
 $route['user_deleted/(:any)']                      = 'Users/UserDeleted/UsersDeleted/$1';
 $route['user_updated/(:any)']                      = 'Users/UserUpdated/UsersUpdated/$1';
 
-//Instructor(Narasumber) - (belum oke)
+//Instructor(Narasumber) - (update)
 $route['instructor_all_list']                      = 'Instructor/InstructorListAll/index';
 $route['instructor_by_id/(:any)']                  = 'Instructor/InstructorGetId/InstructorGetById/$1';
 $route['instructor_add']                           = 'Instructor/InstructorAdd/AddInstructor';
 $route['instructor_deleted/(:any)']                = 'Instructor/InstructorDeleted/InstructorDeleted/$1';
 $route['instructor_updated/(:any)']                = 'Instructor/InstructorUpdated/InstructorUpdated/$1';
 
-//Panitia eksternal - (belum oke) 
+//Panitia eksternal - (oke)
 $route['external_all_list']                        = 'Panitia/ExternalListAll/index';
 $route['external_by_id/(:any)']                    = 'Panitia/ExternalGetId/ExternalGetById/$1';
 $route['external_add']                             = 'Panitia/ExternalAdd/AddExternal';
 $route['external_deleted/(:any)']                  = 'Panitia/ExternalDeleted/ExternalDeleted/$1';
 $route['external_updated/(:any)']                  = 'Panitia/ExternalUpdated/ExternalUpdated/$1';
 
-//Asisten - (belum oke)
+//Asisten - (oke)
 $route['asisten_all_list']                         = 'Asisten/AsistenListAll/index';
 $route['asisten_by_id/(:any)']                     = 'Asisten/AsistenGetId/AsistenGetById/$1';
 $route['asisten_add']                              = 'Asisten/AsistenAdd/AssistantAdd';
@@ -67,28 +67,28 @@ $route['peserta_add']                              = 'Peserta/PesertaAdd/AddPese
 $route['peserta_deleted/(:any)']                   = 'Peserta/PesertaDeleted/PesertaDeleted/$1';
 $route['peserta_updated/(:any)']                   = 'Peserta/PesertaUpdated/PesertaUpdated/$1';
 
-//Diklat - (belum oke)
+//Diklat - (update and by id)
 $route['diklat_all_list']                          = 'Diklat/DiklatListAll/index';
 $route['diklat_by_id/(:any)']                      = 'Diklat/DiklatGetId/DiklatGetById/$1';
 $route['diklat_add']                               = 'Diklat/DiklatAdd/AddDiklat';
 $route['diklat_deleted/(:any)']                    = 'Diklat/DiklatDeleted/DiklatDeleted/$1';
 $route['diklat_updated/(:any)']                    = 'Diklat/DiklatUpdated/DiklatUpdated/$1'; 
 
-//Jadwal - (belum oke) -- jadwal updatenya gak jalan 
-$route['jadwal_all_list']                          = 'Jadwal/JadwalListAll/index';
-$route['jadwal_by_id/(:any)']                      = 'Jadwal/JadwalGetId/JadwalGetById/$1';
-$route['jadwal_add']                               = 'Jadwal/JadwalAdd/AddJadwal';
-$route['jadwal_deleted/(:any)']                    = 'Jadwal/JadwalDeleted/JadwalDeleted/$1';
-$route['jadwal_updated/(:any)']                    = 'Jadwal/JadwalUpdated/JadwalUpdated/$1'; 
+//Jadwal - (oke)
+$route['jadwal_all_list']     						= 'Jadwal/JadwalListAll/index';
+$route['jadwal_by_id/(:any)'] 						= 'Jadwal/JadwalGetId/JadwalGetById/$1';
+$route['jadwal_add']          						= 'Jadwal/JadwalAdd/AddJadwal';
+$route['jadwal_deleted/(:any)']						= 'Jadwal/JadwalDeleted/JadwalDeleted/$1';
+$route['jadwal_updated/(:any)']						= 'Jadwal/JadwalUpdated/JadwalUpdated/$1';
 
-//Absen Peserta - (belum oke)
+//Absen Peserta - (oke)
 $route['absen_all_list']                           = 'Absen/PresenceListAll/index';
 $route['absen_by_id/(:any)']                       = 'Absen/PresenceGetId/PresenceGetById/$1';
 $route['absen_add']                                = 'Absen/PresenceAdd/AddPresence';
 $route['absen_deleted/(:any)']                     = 'Absen/PresenceDeleted/PresenceDeleted/$1';
 $route['absen_updated/(:any)']                     = 'Absen/PresenceUpdated/PresenceUpdated/$1'; 
 
-//Nilai Peserta - (belum oke)
+//Nilai Peserta - (oke)
 $route['nilai_all_list']                           = 'Nilai/NilaiListAll/index';
 $route['nilai_by_id/(:any)']                       = 'Nilai/NilaiGetId/NilaiGetById/$1';
 $route['nilai_add']                                = 'Nilai/NilaiAdd/AddNilai';

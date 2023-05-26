@@ -31,7 +31,7 @@ public function AddInstructor_post()
     } else {
         
         //Upload Gambar
-        $file = $_FILES['avatar'];
+//        $file = $_FILES['avatar'];
         
         $path = "uploads/instructor/"; //direktori
 

@@ -104,7 +104,7 @@ public function AddUsers_post()
             'pejabat'                   => $this->post('pejabat', TRUE),
             'penanggungjawab'           => $this->post('penanggungjawab', TRUE),
             'username'                  => $this->post('username', TRUE),
-            'password'                  => $this->post('password', TRUE),
+            'password'                  => $this->hash_password($this->post('password', TRUE)),
             'level'                     => $this->post('level', TRUE),
             'role'                      => $this->post('role', TRUE),
             'avatar'                    => $path_file,
@@ -144,9 +144,12 @@ public function AddUsers_post()
         }
 
     }
-    
+	// untuk hash passwor ke db
+	private function hash_password($password) {
+		return hash('sha512',$password);
+	}
 
-    private function _validationCheck()
+	private function _validationCheck()
     {
         $this->form_validation->set_rules( 'nik', 'Nomor Induk Keluarga', 'required|numeric|is_unique[tb_pegawai.nik]',
             array('required' => '{field} wajib diisi',

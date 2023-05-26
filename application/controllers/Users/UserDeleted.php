@@ -16,10 +16,10 @@ class UserDeleted extends RestController {
     {
         $users = new m_users;
 
-        //menghapus avatar
+//        menghapus avatar
         $data_user = $this->m_users->GetByIdUsers($id);
-        @unlink($data_asisten[0]['avatar']);
-        $cekData = $users->deletedUsers($id);
+        @unlink($data_user[0]['avatar']);
+		$cekData = $users->deletedUsers($id);
 
         if ($cekData > 0) {
             $this->response([

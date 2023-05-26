@@ -13,17 +13,23 @@ class PresenceUpdated extends RestController {
     }
 
     //Mengupdate Data
-    public function PresenceUpdated_put($id)
+    public function PresenceUpdated_post($id)
     {
         $absen = new m_absen;
 
         $data = [
-                    'assessment_id'                 => $this->put('assessment_id'),
-                    'fullname'                      => $this->put('fullname'),
-                    'address'                       => $this->put('address'),
-                    'present'                       => $this->put('present'),
-                    'total_present'                 => $this->put('total_present'),
-                    'signature'                     => $this->put('signature'),
+//                    'assessment_id'                 => $this->put('assessment_id'),
+//                    'fullname'                      => $this->put('fullname'),
+//                    'address'                       => $this->put('address'),
+//                    'present'                       => $this->put('present'),
+//                    'total_present'                 => $this->put('total_present'),
+//                    'signature'                     => $this->put('signature'),
+			'assessment_id'                 => $this->post('assessment_id'),
+			'fullname'                      => $this->post('fullname'),
+			'address'                       => $this->post('address'),
+			'present'                       => $this->post('present'),
+			'total_present'                 => $this->post('total_present'),
+			'signature'                     => $this->post('signature')
         ];
 
         $update_result = $absen->updateAbsen($id, $data);
@@ -32,12 +38,12 @@ class PresenceUpdated extends RestController {
             $this->response([
                 'status' => true,
                 'message' => 'NEW Absen Updated'
-            ], REST_Controller::HTTP_OK);
+            ], RestController::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'FAILDE TO Updated Absen'
-            ], REST_Controller::HTTP_BAD_REQUEST);
+                'message' => 'FAILED TO Updated Absen'
+            ], RestController::HTTP_BAD_REQUEST);
         }
      
         

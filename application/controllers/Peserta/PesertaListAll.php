@@ -14,9 +14,9 @@ class PesertaListAll extends RestController {
 
     public function index_get()
     {
-        $peserta = new m_pesertat;
+        $peserta = new m_peserta;
         $result_peserta = $peserta->getDataPeserta();
-
+		var_dump($result_peserta);
         //mendapatkan semua data
         if ($result_peserta) {
             $this->response([

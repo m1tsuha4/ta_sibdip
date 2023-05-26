@@ -13,23 +13,22 @@ class JadwalUpdated extends RestController {
     }
 
     //Mengupdate Data
-    public function JadwalUpdated_put($id)
+    public function JadwalUpdated_post($id)
     {
         $jadwal = new m_jadwal;
 
         $data = [
-            'material_id'                 => $this->put('material_id'),
-            'assessment_id'               => $this->put('assessment_id'),
-            'material_parent_id'          => $this->put('material_parent_id'),
-            'instructor_id'               => $this->put('instructor_id'),
-            'material_date'               => $this->put('material_date'),
-            'material_time'               => $this->put('material_time'),
-            'material_detail'             => $this->put('material_detail'),
-            'material_name'               => $this->put('material_name'),
-            'material_jpl'                => $this->put('material_jpl'),
-            'assistant_jpl'               => $this->put('assistant_jpl'),
-            'eval_instructor'             => $this->put('eval_instructor'),
-            'survey_token'                => $this->put('survey_token'),
+			'assessment_id'               => $this->post('assessment_id'),
+			'material_parent_id'          => $this->post('material_parent_id'),
+			'instructor_id'               => $this->post('instructor_id'),
+			'material_date'               => $this->post('material_date'),
+			'material_time'               => $this->post('material_time'),
+			'material_detail'             => $this->post('material_detail'),
+			'material_name'               => $this->post('material_name'),
+			'material_jpl'                => $this->post('material_jpl'),
+			'assistant_jpl'               => $this->post('assistant_jpl'),
+			'eval_instructor'             => $this->post('eval_instructor'),
+			'survey_token'                => $this->post('survey_token'),
         ];
 
         $result_update = $jadwal->updatedJadwal($id, $data);

@@ -62,7 +62,8 @@ class M_Jadwal extends CI_Model
      //updated Data
     public function updatedJadwal($id, $data)
     {
-        $this->db->update('tb_material', $data, ['material_id' => $id]);
+		$this->db->update($this->user_tabel, $data, ['material_id'=>$id]);
+//        $this->db->update('tb_material', $data, ['material_id' => $id]);
         return $this->db->affected_rows();
     }
 
@@ -78,4 +79,3 @@ class M_Jadwal extends CI_Model
 }
 
 
-    

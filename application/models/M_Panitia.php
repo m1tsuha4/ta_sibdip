@@ -24,7 +24,7 @@ class M_Panitia extends CI_Model
         $sql = $this->db->select('p.pegawai_id, p.sort_id, p.assistant, p.sort_number, p.nik, p.nip, p.gelar_depan, 
         p.nama, p.gelar_belakang, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, pr.provinsi, 
         kb.kabupaten, kc.kecamatan, kl.kelurahan, p.telepon, p.email, p.agama, p.status_perkawinan, p.pendidikan, 
-        p.jurusan, p.tahun_tamat,p.jabatan, p.jabatan_ext, p.pangkat, p.golongan,p.npwp p.no_npwp, p.username, 
+        p.jurusan, p.tahun_tamat,p.jabatan, p.jabatan_ext, p.pangkat, p.golongan,p.npwp ,p.no_npwp, p.username, 
         p.password, p.level, p.role, p.avatar, p.avatar_slug, p.ava, p.signature, p.blocked, p.activated, p.token, 
         p.status_token, p.date_token, p.end_token, p.date_added_employee, p.date_updated_employee')
         ->from('tb_pegawai p')
@@ -45,7 +45,7 @@ class M_Panitia extends CI_Model
         $sql = "SELECT p.pegawai_id, p.sort_id, p.assistant, p.sort_number, p.nik, p.nip, p.gelar_depan, 
         p.nama, p.gelar_belakang, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, pr.provinsi, 
         kb.kabupaten, kc.kecamatan, kl.kelurahan, p.telepon, p.email, p.agama, p.status_perkawinan, p.pendidikan, 
-        p.jurusan, p.tahun_tamat,p.jabatan, p.jabatan_ext, p.pangkat, p.golongan,p.npwp p.no_npwp, p.username, 
+        p.jurusan, p.tahun_tamat,p.jabatan, p.jabatan_ext, p.pangkat, p.golongan,p.npwp, p.no_npwp, p.username, 
         p.password, p.level, p.role, p.avatar, p.avatar_slug, p.ava, p.signature, p.blocked, p.activated, p.token, 
         p.status_token, p.date_token, p.end_token, p.date_added_employee, p.date_updated_employee
         FROM tb_pegawai p
@@ -53,7 +53,7 @@ class M_Panitia extends CI_Model
         INNER JOIN tb_kabupaten kb ON p.id_kabupaten = kb.id_kabupaten
         INNER JOIN tb_kecamatan kc ON p.id_kecamatan = kc.id_kecamatan
         INNER JOIN tb_kelurahan kl ON p.id_kelurahan = kl.id_kelurahan WHERE p.pegawai_id = '$id'";    
-        $this->db->or_like('p.pegawai_id',  $id);
+        $this->db->or_like('pegawai_id',  $id);
         $query = $this->db->query($sql)->result_array();
             
         return $query;
@@ -79,13 +79,5 @@ class M_Panitia extends CI_Model
         $this->db->delete($this->user_tabel, ['pegawai_id' => $id]);
         return $this->db->affected_rows();
     }
-
-
-   
-
- 
-
-        
-    
-    
+	
 }

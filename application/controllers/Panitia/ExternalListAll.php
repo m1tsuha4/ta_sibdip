@@ -16,7 +16,6 @@ class ExternalListAll extends RestController {
     {
         $panitia = new m_panitia;
         $result_panitia = $panitia->getDataPanitia();
-
         //mendapatkan semua data
         if ($result_panitia) {
             $this->response([

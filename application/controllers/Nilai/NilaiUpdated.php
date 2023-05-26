@@ -13,7 +13,7 @@ class NilaiUpdated extends RestController {
     }
 
     //Mengupdate Data
-    public function NilaiUpdated_put($id)
+    public function NilaiUpdated_post($id)
     {
         $Nilai = new m_nilai;
 
@@ -33,12 +33,12 @@ class NilaiUpdated extends RestController {
             $this->response([
                 'status' => true,
                 'message' => 'NEW Nilai Updated'
-            ], REST_Controller::HTTP_OK);
+            ], RestController::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'FAILDE TO Updated Nilai'
-            ], REST_Controller::HTTP_BAD_REQUEST);
+                'message' => 'FAILED TO Updated Nilai'
+            ], RestController::HTTP_BAD_REQUEST);
         }
     
     }

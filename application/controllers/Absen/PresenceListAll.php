@@ -9,7 +9,7 @@ class PresenceListAll extends RestController {
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->model('m_panitia');
+        $this->load->model('m_absen');
     }
 
     public function index_get()

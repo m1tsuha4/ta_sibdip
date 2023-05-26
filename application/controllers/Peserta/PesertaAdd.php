@@ -115,7 +115,7 @@ class PesertaAdd extends RestController {
             'is_unique' => '{field} ini sudah ada',
             'numeric' => '{field} harus angka')
         );
-        $this->form_validation->set_rules( 'nama', 'Nama Lengkap', 'required',
+        $this->form_validation->set_rules( 'fullname', 'Nama Lengkap', 'required',
         array('required' => '{field} wajib diisi')
         );
         $this->form_validation->set_rules( 'gender', 'Jenis Kelamin', 'required',

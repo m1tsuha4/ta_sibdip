@@ -15,7 +15,7 @@ class InstructorGetId extends RestController {
 //mendapatkan id
 public function InstructorGetById_get($cari = NULL)
 {
-    $instructor = new m_users;
+    $instructor = new m_instructor;
     $result = $instructor->GetByIdInstructor($cari);
 
     //datanya 1

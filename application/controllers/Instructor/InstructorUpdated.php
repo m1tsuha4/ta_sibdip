@@ -13,7 +13,7 @@ class InstructorUpdated extends RestController {
     }
 
 //Mengupdate Data
-public function InstructorUpdated_put($id)
+public function InstructorUpdated_post($id)
 {
 
     $instructor = new m_instructor;
@@ -104,7 +104,7 @@ public function InstructorUpdated_put($id)
         $data['end_token']              = $this->input->post('end_token', TRUE);
         $data['date_updated_employee']  = date('Y-m-d H:i:s', time());     
   
-    
+    var_dump($data);
     $result_update = $instructor->updatedInstructor($id, $data);
 
     if ($result_update > 0) {

@@ -31,7 +31,7 @@ class PresenceAdd extends RestController {
         ];
 
         //Memasukkan Data 
-        $result = $absen->insertNilai($insert_data);
+        $result = $absen->insertAbsen($insert_data);
 
         if ($result > 0 and !empty($result)) {
             //sukses
@@ -39,13 +39,13 @@ class PresenceAdd extends RestController {
                 'status' => 201,
                 'error' => false,
                 'message' => 'NEW absen Created',
-            ], REST_Controller::HTTP_CREATED);
+            ], RestController::HTTP_CREATED);
         } else {
             $this->response([
                 'status' => 404,
                 'error' => true,
                 'message' => 'FAILDE TO CREATE absen'
-            ], REST_Controller::HTTP_BAD_REQUEST);
+            ], RestController::HTTP_BAD_REQUEST);
         }
     }
 }

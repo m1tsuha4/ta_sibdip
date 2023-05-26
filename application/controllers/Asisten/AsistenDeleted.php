@@ -9,15 +9,15 @@ class AsistenDeleted extends RestController {
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->model('m_asisten');
+        $this->load->model('m_asistent');
     }
     //menghapus
     public function AssistantDeleted_delete($id = null)
     {
-        $asisten = new m_asisten;
+        $asisten = new m_asistent;
         
         //menghapus avatar
-        $data_asisten = $this->m_asisten->GetByIdAssistant($id);
+        $data_asisten = $this->m_asistent->GetByIdAssistant($id);
         @unlink($data_asisten[0]['avatar']);
         $cekData = $asisten->deletedAssistant($id);
 

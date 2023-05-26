@@ -25,7 +25,7 @@ date_default_timezone_set('Asia/Jakarta');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/RestServer_BDIP/';
+$config['base_url'] = 'http://localhost/ta_sibdip/';
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -531,3 +531,5 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+$config['enable_http_method'] = TRUE;
