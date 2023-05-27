@@ -79,5 +79,6 @@ class M_Panitia extends CI_Model
         $this->db->delete($this->user_tabel, ['pegawai_id' => $id]);
         return $this->db->affected_rows();
     }
+
 	
 }

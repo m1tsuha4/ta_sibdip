@@ -21,23 +21,6 @@ class M_Peserta extends CI_Model
      }
 
 //     all users
-//     public function getDataPeserta()
-//    {
-//        $sql = $this->db->select('student_id, a.assessment_name, nik, fullname, gender, birthplace, birthday, religion,
-//        marital_status, address, pr.provinsi, kb.kabupaten, kc.kecamatan, kl.kelurahan, phone, email,
-//        education, department, diploma_year, c.company_name, avatar, signature, student_year')
-//        ->from('tb_student s')
-//        ->join('tb_assessment a', 'a.assessment_id = s.assessment_id', 'inner')
-//        ->join('tb_provinsi pr','pr.id_provinsi = s.id_provinsi')
-//        ->join('tb_kabupaten kb', 'kb.id_kabupaten = s.id_kabupaten')
-//        ->join('tb_kecamatan kc', 'kc.id_kecamatan = s.id_kecamatan')
-//        ->join('tb_kelurahan kl', 'kl.id_kelurahan = s.id_kelurahan')
-//        ->join('tb_company c', 'c.company_id = s.company_id')
-//        ->get()
-//        ->result_array();
-//		echo $this->db->last_query();
-//        return $sql;
-//    }
 	public function getDataPeserta()
 	{
 		$sql = $this->db->select('s.student_id, a.assessment_name, s.nik, s.fullname, s.gender, s.birthplace, s.birthday, s.religion,
@@ -45,14 +28,13 @@ class M_Peserta extends CI_Model
 		s.education, s.department, s.diploma_year, c.company_name, s.avatar, s.signature, s.student_year')
 		->from('tb_student s')
 		->join('tb_assessment a', 's.assessment_id = a.assessment_id', 'inner')
-		->join('tb_provinsi pr', 's.id_provinsi = pr.id_provinsi', 'inner') // Menambahkan jenis join inner pada join ini
-		->join('tb_kabupaten kb', 's.id_kabupaten = kb.id_kabupaten', 'inner') // Menambahkan jenis join inner pada join ini
-		->join('tb_kecamatan kc', 's.id_kecamatan = kc.id_kecamatan', 'inner') // Menambahkan jenis join inner pada join ini
-		->join('tb_kelurahan kl', 's.id_kelurahan = kl.id_kelurahan', 'inner') // Menambahkan jenis join inner pada join ini
-		->join('tb_company c', 's.company_id = c.company_id', 'inner') // Menambahkan jenis join inner pada join ini
+		->join('tb_provinsi pr', 's.id_provinsi = pr.id_provinsi', 'inner')
+		->join('tb_kabupaten kb', 's.id_kabupaten = kb.id_kabupaten', 'inner')
+		->join('tb_kecamatan kc', 's.id_kecamatan = kc.id_kecamatan', 'inner')
+		->join('tb_kelurahan kl', 's.id_kelurahan = kl.id_kelurahan', 'inner')
+		->join('tb_company c', 's.company_id = c.company_id', 'inner')
 		->get()
 		->result_array();
-//		echo $this->db->last_query();
 		return $sql;
 
 	}
@@ -60,17 +42,17 @@ class M_Peserta extends CI_Model
     //GetById
     public function GetByIdPeserta($id)
     {
-        $sql = "SELECT student_id, a.assessment_name, `nik`, `fullname`, `gender`, `birthplace`, 
-        `birthday`, `religion`, `marital_status`, `address`, pr.provinsi, kb.kabupaten, kc.kecamatan, 
-        kl.kelurahan, `phone`, `email`, `education`, `department`, `diploma_year`, c.company_name, `avatar`, 
-        `signature`, `student_year` 
+        $sql = "SELECT s.student_id, a.assessment_name, s.nik, s.fullname, s.gender, s.birthplace, 
+        s.birthday, s.religion, s.marital_status, s.address, pr.provinsi, kb.kabupaten, kc.kecamatan, 
+        kl.kelurahan, s.phone, s.email, s.education, s.department, s.diploma_year, c.company_name, s.avatar, 
+        s.signature, s.student_year 
         FROM tb_student s 
         INNER JOIN tb_assessment a ON a.assessment_id = s.assessment_id 
-        JOIN tb_provinsi pr ON pr.id_provinsi = s.id_provinsi 
-        JOIN tb_kabupaten kb ON kb.id_kabupaten = s.id_kabupaten 
-        JOIN tb_kecamatan kc ON kc.id_kecamatan = s.id_kecamatan 
-        JOIN tb_kelurahan kl ON kl.id_kelurahan = s.id_kelurahan
-        JOIN tb_company c ON c.company_id = s.company_id; WHERE student_id = '$id'";    
+        INNER JOIN tb_provinsi pr ON pr.id_provinsi = s.id_provinsi 
+        INNER JOIN tb_kabupaten kb ON kb.id_kabupaten = s.id_kabupaten 
+        INNER JOIN tb_kecamatan kc ON kc.id_kecamatan = s.id_kecamatan 
+        INNER JOIN tb_kelurahan kl ON kl.id_kelurahan = s.id_kelurahan
+        INNER JOIN tb_company c ON c.company_id = s.company_id WHERE s.student_id = $id";
         $this->db->or_like('student_id',  $id);
         $query = $this->db->query($sql)->result_array();
             

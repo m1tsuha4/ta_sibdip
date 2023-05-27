@@ -81,7 +81,7 @@ class PesertaAdd extends RestController {
                     'company_id'                    => $this->post('company_id'),
                     'resign'                        => $this->post('resign'),
                     'graduated'                     => $this->post('graduated'),
-                    'company_name'                  => $this->post('company_name'),
+//                    'company_name'                  => $this->post('company_name'),
                     'avatar'                        => $path_file,
                     'signature'                     => $this->post('signature'),
                     'student_year'                  => $this->post('student_year')

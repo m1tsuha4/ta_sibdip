@@ -39,7 +39,7 @@ $route['user_add']                                 = 'Users/UserAdd/AddUsers';
 $route['user_deleted/(:any)']                      = 'Users/UserDeleted/UsersDeleted/$1';
 $route['user_updated/(:any)']                      = 'Users/UserUpdated/UsersUpdated/$1';
 
-//Instructor(Narasumber) - (update)
+//Instructor(Narasumber) - (oke)
 $route['instructor_all_list']                      = 'Instructor/InstructorListAll/index';
 $route['instructor_by_id/(:any)']                  = 'Instructor/InstructorGetId/InstructorGetById/$1';
 $route['instructor_add']                           = 'Instructor/InstructorAdd/AddInstructor';
