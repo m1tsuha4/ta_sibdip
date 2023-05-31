@@ -18,17 +18,25 @@ class PresenceAdd extends RestController {
     {
         $absen = new m_absen;
 
-        $i = $this->db->count_all('tb_student');
+        $i = $this->db->count_all('tb_present');
 
-        $insert_data = [
-                    'student_id'                    => $absen->idterurut($i),
-                    'assessment_id'                 => $this->post('assessment_id'),
-                    'fullname'                      => $this->post('fullname'),
-                    'address'                       => $this->post('address'),
-                    'present'                       => $this->post('present'),
-                    'total_present'                 => $this->post('total_present'),
-                    'signature'                     => $this->post('signature'),
-        ];
+//        $insert_data = [
+//                    'student_id'                    => $absen->idterurut($i),
+//                    'assessment_id'                 => $this->post('assessment_id'),
+//                    'fullname'                      => $this->post('fullname'),
+//                    'address'                       => $this->post('address'),
+//                    'present'                       => $this->post('present'),
+//                    'total_present'                 => $this->post('total_present'),
+//                    'signature'                     => $this->post('signature'),
+//        ];
+		$insert_data = [
+			'present_id'					=> $absen->idterurut($i),
+			'student_id'                    => $this->post('student_id'),
+			'assessment_id'                 => $this->post('assessment_id'),
+			'present_date'					=> date('Y-m-d H:i:s', time()),
+			'present_status'				=> $this->post('present_status'),
+			'present_ket'					=> $this->post('present_ket')
+		];
 
         //Memasukkan Data 
         $result = $absen->insertAbsen($insert_data);

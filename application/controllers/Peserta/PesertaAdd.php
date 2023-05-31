@@ -86,9 +86,44 @@ class PesertaAdd extends RestController {
                     'signature'                     => $this->post('signature'),
                     'student_year'                  => $this->post('student_year')
         ];
+		$insert_score = [
+			'student_id'                    => $peserta->idterurut($i),
+			'assessment_id'                 => $this->post('assessment_id'),
+			'material_id'					=> $this->post('material_id')
+
+		];
+//		$this->db->trans_start(); // Memulai transaksi
+//
+//// Data untuk tabel pertama
+//		$data1 = array(
+//			'field1' => 'Nilai1',
+//			'field2' => 'Nilai2',
+//		);
+//		$this->db->insert('nama_tabel1', $data1);
+//
+//// Mengambil ID yang baru saja di-generate dalam tabel pertama
+//		$id1 = $this->db->insert_id();
+//
+//// Data untuk tabel kedua
+//		$data2 = array(
+//			'field3' => 'Nilai3',
+//			'field4' => 'Nilai4',
+//			'foreign_key' => $id1, // Menggunakan foreign key yang sama
+//		);
+//		$this->db->insert('nama_tabel2', $data2);
+//
+//		$this->db->trans_complete(); // Menyelesaikan transaksi
+//
+//		if ($this->db->trans_status() === FALSE) {
+//			// Transaksi gagal
+//			echo "Gagal menambahkan data ke dua tabel.";
+//		} else {
+//			// Transaksi berhasil
+//			echo "Data berhasil ditambahkan ke dua tabel.";
+//		}
 
         //Memasukkan Data 
-        $result = $peserta->insertPeserta($insert_data);
+        $result = $peserta->insertPeserta($insert_data,$insert_score);
 
         if ($result > 0 and !empty($result)) {
             //sukses

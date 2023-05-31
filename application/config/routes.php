@@ -55,6 +55,7 @@ $route['external_updated/(:any)']                  = 'Panitia/ExternalUpdated/Ex
 
 //Asisten - (oke)
 $route['asisten_all_list']                         = 'Asisten/AsistenListAll/index';
+$route['asisten_list/(:any)']                      = 'Asisten/AsistenList/AsistenGetData/$1';
 $route['asisten_by_id/(:any)']                     = 'Asisten/AsistenGetId/AsistenGetById/$1';
 $route['asisten_add']                              = 'Asisten/AsistenAdd/AssistantAdd';
 $route['asisten_deleted/(:any)']                   = 'Asisten/AsistenDeleted/AssistantDeleted/$1';
@@ -70,6 +71,7 @@ $route['peserta_updated/(:any)']                   = 'Peserta/PesertaUpdated/Pes
 //Diklat - (update and by id)
 $route['diklat_all_list']                          = 'Diklat/DiklatListAll/index';
 $route['diklat_by_id/(:any)']                      = 'Diklat/DiklatGetId/DiklatGetById/$1';
+$route['GetNowDiklat/(:any)']                      = 'Diklat/GetNowDiklat/GetNowDiklat/$1';
 $route['diklat_add']                               = 'Diklat/DiklatAdd/AddDiklat';
 $route['diklat_deleted/(:any)']                    = 'Diklat/DiklatDeleted/DiklatDeleted/$1';
 $route['diklat_updated/(:any)']                    = 'Diklat/DiklatUpdated/DiklatUpdated/$1'; 

@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_Peserta extends CI_Model
 {
     protected $user_tabel = 'tb_student';
-    
+    protected $score_tabel = 'tb_score';
 
      //mengurutkan id
      public function idterurut($total)
@@ -60,9 +60,11 @@ class M_Peserta extends CI_Model
     }
 
     //insert data
-    public function insertPeserta($data)
+    public function insertPeserta($data,$insert_score)
     {
+		$sql = "SELECT "
         $this->db->insert($this->user_tabel, $data);
+		$this->db->insert($this->score_tabel, $insert_score);
         return $this->db->affected_rows();
     }
 

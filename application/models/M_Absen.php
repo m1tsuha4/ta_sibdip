@@ -4,7 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_Absen extends CI_Model
 {
-    protected $user_tabel = 'tb_student';
+//    protected $user_tabel = 'tb_student';
+	protected $user_tabel = 'tb_present';
 
          //mengurutkan id
          public function idterurut($total)
@@ -13,7 +14,7 @@ class M_Absen extends CI_Model
                  return 1;
              } else {
      
-                 $count = $this->db->select_max('student_id')->get($this->user_tabel)->row()->student_id;
+                 $count = $this->db->select_max('present_id')->get($this->user_tabel)->row()->present_id;
                  $count += 1;
                  return $count;
              }
@@ -21,13 +22,14 @@ class M_Absen extends CI_Model
 
     public function getDataAbsen()
     {
-        $query = $this->db->get('tb_student');
+        $query = $this->db->get('tb_present');
         return $query->result_array();
     }
 
     public function GetByIdAbsen($id)
     {
-        $query = $this->db->get_where('tb_student', ['student_id' => $id]);;
+		$sql = "SELECT 
+        $query = $this->db->get_where('tb_present', ['present_id' => $id]);
         return $query->result_array();
     }
 
@@ -41,7 +43,7 @@ class M_Absen extends CI_Model
     //updated Data
     public function updateAbsen($id, $data)
     {
-        $this->db->update($this->user_tabel, $data, ['student_id' => $id]);
+        $this->db->update($this->user_tabel, $data, ['present_id' => $id]);
         return $this->db->affected_rows();
     }
 
@@ -49,7 +51,7 @@ class M_Absen extends CI_Model
     //deleted Data
     public function deletedAbsen($id)
     {
-        $this->db->delete($this->user_tabel, ['student_id' => $id]);
+        $this->db->delete($this->user_tabel, ['present_id' => $id]);
         return $this->db->affected_rows();
     }
 

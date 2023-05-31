@@ -38,23 +38,46 @@ public function getDataDiklat()
 }
 
 //GetById
-public function GetByIdDiklat($id)
-{
-    $sql = "SELECT assessment_id, `assessment_to`, s.scheme_name, `assessment_name`, `assessment_date_start`,
-     `assessment_date_finish`, `assessment_type`, `assessment_location`, `assessment_address`, `assessment_origin`, 
-     `assessment_city`, `assessment_person_in_charge`, `assessment_participant`, `assessment_total_bk`, `assessment_date`, 
-     `assessment_tgl_sk`, `assessment_no_sk_penyelenggara`, `assessment_no_sk_peserta`, `assessment_no_sk_asesor`, 
-     `assessment_no_sk_evaluasi`, `assessment_tgl_sk_evaluasi`, `assessment_meeting_date`, `assessment_year`, 
-     `assessment_code_keg`, `assessment_instructor`, `assessment_finish`, p.nama, `assessment_delay`, `assessment_filter`, 
-     `assessment_date_added`, `assessment_date_updated`, `accepted`, a.token, `photo_open`, `photo_middle`, `photo_close` 
-    FROM tb_assessment a 
-    JOIN tb_pegawai p ON p.pegawai_id = a.pegawai_id
-    JOIN tb_scheme s ON s.scheme_id = a.scheme_id WHERE assessment_id = '$id'";    
-    $this->db->or_like('assessment_id',  $id);
-    $query = $this->db->query($sql)->result_array();
-        
-    return $query;
-}
+//public function GetByIdDiklat($id)
+//{
+//    $sql = "SELECT assessment_id, `assessment_to`, s.scheme_name, `assessment_name`, `assessment_date_start`,
+//     `assessment_date_finish`, `assessment_type`, `assessment_location`, `assessment_address`, `assessment_origin`,
+//     `assessment_city`, `assessment_person_in_charge`, `assessment_participant`, `assessment_total_bk`, `assessment_date`,
+//     `assessment_tgl_sk`, `assessment_no_sk_penyelenggara`, `assessment_no_sk_peserta`, `assessment_no_sk_asesor`,
+//     `assessment_no_sk_evaluasi`, `assessment_tgl_sk_evaluasi`, `assessment_meeting_date`, `assessment_year`,
+//     `assessment_code_keg`, `assessment_instructor`, `assessment_finish`, p.nama, `assessment_delay`, `assessment_filter`,
+//     `assessment_date_added`, `assessment_date_updated`, `accepted`, a.token, `photo_open`, `photo_middle`, `photo_close`
+//    FROM tb_assessment a
+//    JOIN tb_pegawai p ON p.pegawai_id = a.pegawai_id
+//    JOIN tb_scheme s ON s.scheme_id = a.scheme_id WHERE assessment_id = '$id'";
+//    $this->db->or_like('assessment_id',  $id);
+//    $query = $this->db->query($sql)->result_array();
+//    return $query;
+//}
+	public function GetByIdDiklat($id){
+		$sql = "SELECT * FROM tb_committee c INNER JOIN tb_assessment a ON c.assessment_id = a.assessment_id
+		WHERE c.pegawai_id='$id' AND a.assessment_year=2021";
+		$this->db->or_like('assessment_id',  $id);
+		$query = $this->db->query($sql)->result_array();
+		return $query;
+	}
+
+//public function GetNowDiklat($request){
+//	$sql = "SELECT assessment_id, `assessment_to`, s.scheme_name, `assessment_name`, `assessment_date_start`,
+//     `assessment_date_finish`, `assessment_type`, `assessment_location`, `assessment_address`, `assessment_origin`,
+//     `assessment_city`, `assessment_person_in_charge`, `assessment_participant`, `assessment_total_bk`, `assessment_date`,
+//     `assessment_tgl_sk`, `assessment_no_sk_penyelenggara`, `assessment_no_sk_peserta`, `assessment_no_sk_asesor`,
+//     `assessment_no_sk_evaluasi`, `assessment_tgl_sk_evaluasi`, `assessment_meeting_date`, `assessment_year`,
+//     `assessment_code_keg`, `assessment_instructor`, `assessment_finish`, p.nama, `assessment_delay`, `assessment_filter`,
+//     `assessment_date_added`, `assessment_date_updated`, `accepted`, a.token, `photo_open`, `photo_middle`, `photo_close`
+//    FROM tb_assessment a
+//    INNER JOIN tb_pegawai p ON p.pegawai_id = a.pegawai_id
+//    INNER JOIN tb_scheme s ON s.scheme_id = a.scheme_id WHERE assessment_date = 'date(y-m-d)'";
+//	$this->db->or_like('assessment_id',  $request);
+//	$query = $this->db->query($sql)->result_array();
+//
+//	return $query;
+//}
 
 //insert data
 public function insertDiklat($data)

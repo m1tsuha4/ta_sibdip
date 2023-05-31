@@ -31,16 +31,21 @@ class M_Jadwal extends CI_Model
     public function GetByIdJadwal($id)
     {
 
-       $sql = "SELECT m.material_id,  a.assessment_name AS Diklat, m.material_parent_id, p.nama AS Nama_Pegawai, 
-       m.material_date, m.material_time, m.material_detail, m.material_name, m.material_jpl, m.assistant_jpl, 
-       m.instructor_honor_check, m.instructor_honor_jpl, m.eval_instructor, m.survey_token 
-       FROM tb_material m 
-       JOIN tb_assessment a ON a.assessment_id = m.assessment_id
-       JOIN tb_pegawai p ON m.instructor_id = p.pegawai_id 
-       WHERE m.material_id = '$id'";    
-        $this->db->or_like('material_id',  $id);
+//       $sql = "SELECT m.material_id,  a.assessment_name AS Diklat, m.material_parent_id, p.nama AS Nama_Pegawai,
+//       m.material_date, m.material_time, m.material_detail, m.material_name, m.material_jpl, m.assistant_jpl,
+//       m.instructor_honor_check, m.instructor_honor_jpl, m.eval_instructor, m.survey_token
+//       FROM tb_material m
+//       JOIN tb_assessment a ON a.assessment_id = m.assessment_id
+//       JOIN tb_pegawai p ON m.instructor_id = p.pegawai_id
+//       WHERE m.material_id = '$id'";
+		$sql = "SELECT m.material_id, a.assessment_name, a.assessment_id,p.nama, m.material_date, m.material_time, m.material_name,
+       	m.material_detail, m.material_jpl, m.assistant_jpl
+		FROM tb_material m
+		JOIN tb_assessment a ON a.assessment_id = m.assessment_id
+		JOIN tb_pegawai p ON m.instructor_id = p.pegawai_id
+		WHERE a.assessment_id = '$id'";
+        $this->db->or_like('a.assessment_id',  $id);
         $query = $this->db->query($sql)->result_array();
-            
         return $query;
     }
 
