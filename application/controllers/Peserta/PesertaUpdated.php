@@ -74,8 +74,7 @@ class PesertaUpdated extends RestController {
 			'signature'                     => $this->post('signature'),
 			'student_year'                  => $this->post('student_year')
 		];
-      
-        var_dump($update_data);
+
         $result_update = $peserta->updatedPeserta($id, $update_data);
     
         if ($result_update > 0) {
