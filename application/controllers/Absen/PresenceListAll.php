@@ -12,10 +12,10 @@ class PresenceListAll extends RestController {
         $this->load->model('m_absen');
     }
 
-    public function index_get()
+    public function index_get($id,$date)
     {
         $absen = new m_absen;
-        $result_absen = $absen->getDataAbsen();
+        $result_absen = $absen->getDataAbsen($id,$date);
 
         //mendapatkan semua data
         if ($result_absen) {

@@ -24,12 +24,14 @@ class PresenceUpdated extends RestController {
 //                    'present'                       => $this->put('present'),
 //                    'total_present'                 => $this->put('total_present'),
 //                    'signature'                     => $this->put('signature'),
-			'assessment_id'                 => $this->post('assessment_id'),
-			'fullname'                      => $this->post('fullname'),
-			'address'                       => $this->post('address'),
-			'present'                       => $this->post('present'),
-			'total_present'                 => $this->post('total_present'),
-			'signature'                     => $this->post('signature')
+//			'assessment_id'                 => $this->post('assessment_id'),
+//			'fullname'                      => $this->post('fullname'),
+//			'address'                       => $this->post('address'),
+//			'present'                       => $this->post('present'),
+//			'total_present'                 => $this->post('total_present'),
+//			'signature'                     => $this->post('signature')
+			'present_status' =>$this->post('present_status'),
+			'present_ket' =>$this->post('present_ket')
         ];
 
         $update_result = $absen->updateAbsen($id, $data);

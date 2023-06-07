@@ -5,6 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_Nilai extends CI_Model
 {
     protected $user_tabel = 'tb_student';
+	protected $score_tabel = 'tb_score';
 
      //mengurutkan id
      public function idterurut($total)
@@ -27,7 +28,10 @@ public function getDataNilai()
 
 public function GetByIdNilai($id)
 {
-    $query = $this->db->get_where('tb_student', ['student_id' => $id]);;
+	$this->db->select('n.score_id, `n.assessment_id`, `n.material_id`, `n.student_id`, s.fullname, s.address, `n.pretest`, n.posttest');
+	$this->db->from('tb_score n');
+	$this->db->join('tb_student s', 's.student_id = n.student_id');
+    $query = $this->db->get_where('tb_score', ['n.material_id' => $id]);
     return $query->result_array();
 }
 
@@ -41,7 +45,7 @@ public function insertNilai($data)
 //updated Data
 public function updateNilai($id, $data)
 {
-    $this->db->update($this->user_tabel, $data, ['student_id' => $id]);
+    $this->db->update($this->score_tabel, $data, ['score_id' => $id]);
     return $this->db->affected_rows();
 }
 

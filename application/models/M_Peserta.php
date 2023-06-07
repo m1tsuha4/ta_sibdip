@@ -21,9 +21,9 @@ class M_Peserta extends CI_Model
      }
 
 //     all users
-	public function getDataPeserta()
+	public function getDataPeserta($id)
 	{
-		$sql = $this->db->select('s.student_id, a.assessment_name, s.nik, s.fullname, s.gender, s.birthplace, s.birthday, s.religion,
+		$sql = $this->db->select('s.student_id, s.assessment_id, a.assessment_name, s.nik, s.fullname, s.gender, s.birthplace, s.birthday, s.religion,
 		s.marital_status, s.address, pr.provinsi, kb.kabupaten, kc.kecamatan, kl.kelurahan, s.phone, s.email,
 		s.education, s.department, s.diploma_year, c.company_name, s.avatar, s.signature, s.student_year')
 		->from('tb_student s')
@@ -33,6 +33,7 @@ class M_Peserta extends CI_Model
 		->join('tb_kecamatan kc', 's.id_kecamatan = kc.id_kecamatan', 'inner')
 		->join('tb_kelurahan kl', 's.id_kelurahan = kl.id_kelurahan', 'inner')
 		->join('tb_company c', 's.company_id = c.company_id', 'inner')
+			->where('s.assessment_id',$id)
 		->get()
 		->result_array();
 		return $sql;
@@ -62,8 +63,7 @@ class M_Peserta extends CI_Model
     //insert data
     public function insertPeserta($data,$insert_score)
     {
-		$sql = "SELECT "
-        $this->db->insert($this->user_tabel, $data);
+		$this->db->insert($this->user_tabel, $data);
 		$this->db->insert($this->score_tabel, $insert_score);
         return $this->db->affected_rows();
     }

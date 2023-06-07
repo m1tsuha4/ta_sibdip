@@ -17,7 +17,9 @@ class DiklatGetId extends RestController {
     {
         $diklat = new m_diklat;
         $result = $diklat->GetByIdDiklat($cari);
-    
+		$dateStart = $this->input->post('assessment_date_start');
+		$dateEnd = $this->input->post('assessment_date_finish');
+		$this->session->set_userdata('assessment_date_start', $dateStart);
         //datanya 1
         if (count($result) > 1) {
             $this->response([

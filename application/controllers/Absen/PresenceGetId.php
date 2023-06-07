@@ -13,10 +13,10 @@ class PresenceGetId extends RestController {
     }
 
     //mendapatkan id
-    public function PresenceGetById_get($cari = NULL)
+    public function PresenceGetById_get($id,$cari = NULL)
     {
         $absen = new m_absen;
-        $result = $absen->GetByIdAbsen($cari);
+        $result = $absen->GetByIdAbsen($id,$cari);
     
         //datanya 1
         if (count($result) > 1) {

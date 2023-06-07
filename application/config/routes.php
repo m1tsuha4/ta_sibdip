@@ -62,7 +62,7 @@ $route['asisten_deleted/(:any)']                   = 'Asisten/AsistenDeleted/Ass
 $route['asisten_updated/(:any)']                   = 'Asisten/AsistenUpdated/AssistantUpdated/$1';
 
 //Peserta - (belum oke)
-$route['peserta_all_list']                         = 'Peserta/PesertaListAll/index';
+$route['peserta_all_list/(:any)']                  = 'Peserta/PesertaListAll/index/$1';
 $route['peserta_by_id/(:any)']                     = 'Peserta/PesertaGetId/PesertaGetById/$1';
 $route['peserta_add']                              = 'Peserta/PesertaAdd/AddPeserta';
 $route['peserta_deleted/(:any)']                   = 'Peserta/PesertaDeleted/PesertaDeleted/$1';
@@ -84,8 +84,8 @@ $route['jadwal_deleted/(:any)']						= 'Jadwal/JadwalDeleted/JadwalDeleted/$1';
 $route['jadwal_updated/(:any)']						= 'Jadwal/JadwalUpdated/JadwalUpdated/$1';
 
 //Absen Peserta - (oke)
-$route['absen_all_list']                           = 'Absen/PresenceListAll/index';
-$route['absen_by_id/(:any)']                       = 'Absen/PresenceGetId/PresenceGetById/$1';
+$route['absen_all_list/(:any)/(:any)']             = 'Absen/PresenceListAll/index/$1/$2';
+$route['absen_by_id/(:any)/(:any)']                       = 'Absen/PresenceGetId/PresenceGetById/$1/$2';
 $route['absen_add']                                = 'Absen/PresenceAdd/AddPresence';
 $route['absen_deleted/(:any)']                     = 'Absen/PresenceDeleted/PresenceDeleted/$1';
 $route['absen_updated/(:any)']                     = 'Absen/PresenceUpdated/PresenceUpdated/$1'; 

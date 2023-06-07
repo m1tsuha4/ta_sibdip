@@ -44,7 +44,7 @@ class M_Jadwal extends CI_Model
 		JOIN tb_assessment a ON a.assessment_id = m.assessment_id
 		JOIN tb_pegawai p ON m.instructor_id = p.pegawai_id
 		WHERE a.assessment_id = '$id'";
-        $this->db->or_like('a.assessment_id',  $id);
+        $this->db->or_like('assessment_id',  $id);
         $query = $this->db->query($sql)->result_array();
         return $query;
     }

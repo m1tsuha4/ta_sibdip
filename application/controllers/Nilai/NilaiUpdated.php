@@ -19,10 +19,10 @@ class NilaiUpdated extends RestController {
 
         $data = [
             
-            'assessment_id'                 => $this->post('assessment_id'),
-            'fullname'                      => $this->post('fullname'),
-            'address'                       => $this->post('address'),
-            'company_id'                    => $this->post('company_id'),
+//            'assessment_id'                 => $this->post('assessment_id'),
+//            'fullname'                      => $this->post('fullname'),
+//            'address'                       => $this->post('address'),
+//            'company_id'                    => $this->post('company_id'),
             'pretest'                       => $this->post('pretest'),
             'posttest'                      => $this->post('posttest'),
         ];

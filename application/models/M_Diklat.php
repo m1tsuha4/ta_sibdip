@@ -61,6 +61,12 @@ public function getDataDiklat()
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
+	public function GetDataDate($id){
+		$sql = "SELECT assessment_date_start,assessment_date_finish FROM tb_assessment WHERE assessment_id='$id'";
+		$this->db->or_like('assessment_id',  $id);
+		$query = $this->db->query($sql)->result_array();
+		return $query;
+	}
 
 //public function GetNowDiklat($request){
 //	$sql = "SELECT assessment_id, `assessment_to`, s.scheme_name, `assessment_name`, `assessment_date_start`,

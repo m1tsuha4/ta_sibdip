@@ -54,10 +54,10 @@ class PesertaListAll extends RestController
 		$this->load->model('m_peserta');
 	}
 
-	public function index_get()
+	public function index_get($id)
 	{
 		$peserta = new m_peserta;
-		$result_peserta = $peserta->getDataPeserta();
+		$result_peserta = $peserta->getDataPeserta($id);
 
 		//mendapatkan semua data
 		if ($result_peserta) {
