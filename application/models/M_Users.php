@@ -76,9 +76,9 @@ class M_Users extends CI_Model
     }
 
     //updated Data
-    public function updatedUsers($id, $data)
+    public function updatedUsers($id, $data,$password)
     {
-        $this->db->update($this->user_tabel, $data, ['pegawai_id' => $id]);
+        $this->db->update($this->user_tabel, $data, ['pegawai_id' => $id,'password'=>$password]);
         return $this->db->affected_rows();
     }
 

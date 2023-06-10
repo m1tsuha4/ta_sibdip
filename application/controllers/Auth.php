@@ -27,10 +27,9 @@ class Auth extends RestController
         $date = new DateTime();
         $username = $this->post('username');
         $password = $this->post('password');
-        $encrypt_pass = hash('sha512', $password. $this->key);
-       
+        $encrypt_pass = hash('sha512', $password.$this->key);
         $datauser = $this->auth->doLogin($username,  $encrypt_pass);
-       
+
         if($datauser)
         {
             $payload = [

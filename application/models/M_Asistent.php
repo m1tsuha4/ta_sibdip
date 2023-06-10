@@ -85,8 +85,7 @@ class M_Asistent extends CI_Model
         INNER JOIN tb_provinsi pr ON p.id_provinsi = pr.id_provinsi
         INNER JOIN tb_kabupaten kb ON p.id_kabupaten = kb.id_kabupaten
         INNER JOIN tb_kecamatan kc ON p.id_kecamatan = kc.id_kecamatan
-        INNER JOIN tb_kelurahan kl ON p.id_kelurahan = kl.id_kelurahan WHERE p.pegawai_id = '$id'";
-        $this->db->or_like('pegawai_id',  $id);
+        INNER JOIN tb_kelurahan kl ON p.id_kelurahan = kl.id_kelurahan WHERE p.pegawai_id = '$id' AND p.level = 'assistant'";
         $query = $this->db->query($sql)->result_array();
 
         return $query;

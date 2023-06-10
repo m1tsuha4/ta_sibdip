@@ -24,42 +24,7 @@ class PesertaAdd extends RestController {
         $i = $this->db->count_all('tb_student');
 		$studendId = $peserta->idterurut($i);
 		$id = $this->input->post('assessment_id'); // Mendapatkan ID dari permintaan
-		// insert tb_score
-		$score = $this->m_jadwal->GetByIdJadwal($id);
 
-		if ($score) {
-			foreach ($score as $row) {
-				$assessmentId = $row['assessment_id'];
-				$materialId = $row['material_id'];
-				// Lakukan proses insert ke database menggunakan assessmentId dan materialId
-				$data = array(
-					'student_id' => $studendId,
-					'assessment_id' => $assessmentId,
-					'material_id' => $materialId,
-					// Tambahkan data lain yang ingin Anda masukkan ke database
-				);
-				$this->db->insert('tb_score', $data); // Ganti dengan nama tabel yang sesuai
-
-				// Lakukan operasi lain yang diperlukan
-			}
-		}
-		// insert tb_present
-		$user_data = $this->m_diklat->GetDataDate($id);
-
-		$firstRow = $user_data[0];
-		$dateStart = DateTime::createFromFormat('Y-m-d', $firstRow["assessment_date_start"]);
-		$dateEnd = DateTime::createFromFormat('Y-m-d', $firstRow["assessment_date_finish"]);
-		$currentDate = clone $dateStart;
-		while ($currentDate <= $dateEnd) {
-			$data = array(
-				'student_id' => $peserta->idterurut($i),
-				'assessment_id' => $this->post('assessment_id'),
-				'present_date' => $currentDate->format('Y-m-d'),
-			);
-			$this->db->insert('tb_present', $data);
-
-			$currentDate->modify('+1 day'); // Tambahkan 1 hari ke tanggal saat ini
-		}
 
         //set rule validasi
     if ($this->_validationCheck() === FALSE) {
@@ -99,7 +64,6 @@ class PesertaAdd extends RestController {
 
         //load Data 
         $insert_data = [
-                    'student_id'                    => $studendId,
                     'assessment_id'                 => $this->post('assessment_id'),
                     'nik'                           => $this->post('nik'),
                     'fullname'                      => $this->post('fullname'),
@@ -121,21 +85,51 @@ class PesertaAdd extends RestController {
                     'company_id'                    => $this->post('company_id'),
                     'resign'                        => $this->post('resign'),
                     'graduated'                     => $this->post('graduated'),
-//                    'company_name'                  => $this->post('company_name'),
                     'avatar'                        => $path_file,
                     'signature'                     => $this->post('signature'),
                     'student_year'                  => $this->post('student_year')
         ];
-		$insert_score = [
-			'student_id'                    => $studendId,
-			'assessment_id'                 => $this->post('assessment_id'),
-			'material_id'					=> $this->post('material_id')
-
-		];
-
         //Memasukkan Data 
-        $result = $peserta->insertPeserta($insert_data,$insert_score);
+        $result = $peserta->insertPeserta($insert_data);
+		$last_student_id = $this->db->insert_id();
+// insert tb_score
 
+//		SET @last_student_id = LAST_INSERT_ID();
+		$score = $this->m_jadwal->GetByIdJadwal($id);
+
+		if ($score) {
+			foreach ($score as $row) {
+				$assessmentId = $row['assessment_id'];
+				$materialId = $row['material_id'];
+				// Lakukan proses insert ke database menggunakan assessmentId dan materialId
+				$data = array(
+					'student_id' => $last_student_id,
+					'assessment_id' => $assessmentId,
+					'material_id' => $materialId,
+					// Tambahkan data lain yang ingin Anda masukkan ke database
+				);
+				$this->db->insert('tb_score', $data); // Ganti dengan nama tabel yang sesuai
+
+				// Lakukan operasi lain yang diperlukan
+			}
+		}
+		// insert tb_present
+		$user_data = $this->m_diklat->GetDataDate($id);
+
+		$firstRow = $user_data[0];
+		$dateStart = DateTime::createFromFormat('Y-m-d', $firstRow["assessment_date_start"]);
+		$dateEnd = DateTime::createFromFormat('Y-m-d', $firstRow["assessment_date_finish"]);
+		$currentDate = clone $dateStart;
+		while ($currentDate <= $dateEnd) {
+			$data = array(
+				'student_id' => $last_student_id ,
+				'assessment_id' => $this->post('assessment_id'),
+				'present_date' => $currentDate->format('Y-m-d'),
+			);
+			$this->db->insert('tb_present', $data);
+
+			$currentDate->modify('+1 day'); // Tambahkan 1 hari ke tanggal saat ini
+		}
         if ($result > 0 and !empty($result)) {
             //sukses
             $this->response([
@@ -152,6 +146,7 @@ class PesertaAdd extends RestController {
         }
 
         }
+
     }
 
     private function _validationCheck()

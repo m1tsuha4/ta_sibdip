@@ -11,6 +11,7 @@ class UserAdd extends RestController {
         parent::__construct();
         $this->load->model('m_users');
         $this->load->library('form_validation');
+		$this->key = '1234567890';
     }
 
 //menambahkan data
@@ -19,7 +20,8 @@ public function AddUsers_post()
     $users = new m_users;
 
     $i = $this->db->count_all('tb_pegawai');
-    
+	$password = $this->post('password', TRUE);
+	$encrypt_pass = hash('sha512', $password. $this->key);
     //set rule validasi
     if ($this->_validationCheck() === FALSE) {
         $this->response([
@@ -104,7 +106,7 @@ public function AddUsers_post()
             'pejabat'                   => $this->post('pejabat', TRUE),
             'penanggungjawab'           => $this->post('penanggungjawab', TRUE),
             'username'                  => $this->post('username', TRUE),
-            'password'                  => $this->hash_password($this->post('password', TRUE)),
+            'password'                  => $encrypt_pass,
             'level'                     => $this->post('level', TRUE),
             'role'                      => $this->post('role', TRUE),
             'avatar'                    => $path_file,
