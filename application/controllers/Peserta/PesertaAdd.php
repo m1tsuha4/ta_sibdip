@@ -5,7 +5,7 @@ use chriskacerguis\RestServer\RestController;
 
 class PesertaAdd extends RestController {
 
-    
+
     function __construct()
     {
         // Construct the parent class
@@ -23,7 +23,7 @@ class PesertaAdd extends RestController {
 
         $i = $this->db->count_all('tb_student');
 		$studendId = $peserta->idterurut($i);
-		$id = $this->input->post('assessment_id'); // Mendapatkan ID dari permintaan
+		$id = $this->input->post('assessment_id');
 
 
         //set rule validasi
@@ -94,7 +94,7 @@ class PesertaAdd extends RestController {
 		$last_student_id = $this->db->insert_id();
 // insert tb_score
 
-//		SET @last_student_id = LAST_INSERT_ID();
+
 		$score = $this->m_jadwal->GetByIdJadwal($id);
 
 		if ($score) {
@@ -106,11 +106,8 @@ class PesertaAdd extends RestController {
 					'student_id' => $last_student_id,
 					'assessment_id' => $assessmentId,
 					'material_id' => $materialId,
-					// Tambahkan data lain yang ingin Anda masukkan ke database
 				);
 				$this->db->insert('tb_score', $data); // Ganti dengan nama tabel yang sesuai
-
-				// Lakukan operasi lain yang diperlukan
 			}
 		}
 		// insert tb_present
@@ -128,7 +125,7 @@ class PesertaAdd extends RestController {
 			);
 			$this->db->insert('tb_present', $data);
 
-			$currentDate->modify('+1 day'); // Tambahkan 1 hari ke tanggal saat ini
+			$currentDate->modify('+1 day');
 		}
         if ($result > 0 and !empty($result)) {
             //sukses
@@ -196,8 +193,6 @@ class PesertaAdd extends RestController {
         $this->form_validation->set_rules( 'student_year', 'Tahun Diklat', 'required',
         array('required' => '{field} wajib diisi')
         );
-       
-
         return $this->form_validation->run();
     }
 
