@@ -96,3 +96,6 @@ $route['nilai_by_id/(:any)']                       = 'Nilai/NilaiGetId/NilaiGetB
 $route['nilai_add']                                = 'Nilai/NilaiAdd/AddNilai';
 $route['nilai_deleted/(:any)']                     = 'Nilai/NilaiDeleted/NilaiDeleted/$1';
 $route['nilai_updated/(:any)']                     = 'Nilai/NilaiUpdated/NilaiUpdated/$1'; 
+
+//Alamat
+$route['alamat_all_list']                           = 'Alamat/ListAll/index';
