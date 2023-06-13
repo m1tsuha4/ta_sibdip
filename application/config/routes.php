@@ -103,3 +103,6 @@ $route['alamat_list_provinsi']                      = 'Alamat/ListProvinsi/index
 $route['alamat_list_kabupaten/(:any)']              = 'Alamat/ListKabupaten/ListKabupaten/$1';
 $route['alamat_list_kecamatan/(:any)']              = 'Alamat/ListKecamatan/ListKecamatan/$1';
 $route['alamat_list_kelurahan/(:any)']              = 'Alamat/ListKelurahan/ListKelurahan/$1';
+
+//Company
+$route['list_company']                           = 'Company/ListCompany/index';
