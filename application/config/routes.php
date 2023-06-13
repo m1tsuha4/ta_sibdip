@@ -99,7 +99,7 @@ $route['nilai_updated/(:any)']                     = 'Nilai/NilaiUpdated/NilaiUp
 
 //Alamat
 $route['alamat_all_list']                           = 'Alamat/ListAll/index';
-$route['alamat_list_provinsi/(:any)']                           = 'Alamat/ListProvinsi/index';
-$route['alamat_list_kabupaten/(:any)']                           = 'Alamat/ListKabupaten/ListKabupaten/$1';
-$route['alamat_list_kecamatan/(:any)']                           = 'Alamat/ListKecamatan/ListKecamatan/$1';
-$route['alamat_list_kelurahan/(:any)']                           = 'Alamat/ListKelurahan/ListKelurahan/$1';
+$route['alamat_list_provinsi']                      = 'Alamat/ListProvinsi/index';
+$route['alamat_list_kabupaten/(:any)']              = 'Alamat/ListKabupaten/ListKabupaten/$1';
+$route['alamat_list_kecamatan/(:any)']              = 'Alamat/ListKecamatan/ListKecamatan/$1';
+$route['alamat_list_kelurahan/(:any)']              = 'Alamat/ListKelurahan/ListKelurahan/$1';
