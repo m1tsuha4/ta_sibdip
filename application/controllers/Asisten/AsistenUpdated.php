@@ -13,7 +13,7 @@ class AsistenUpdated extends RestController {
     }
 
 //Mengupdate Data
-public function AssistantUpdated_put($id)
+public function AssistantUpdated_post($id)
 {
 
     $asisten = new m_asistent;
