@@ -12,10 +12,10 @@ class NilaiListAll extends RestController {
         $this->load->model('m_nilai');
     }
 
-    public function index_get()
+    public function index_get($id)
     {
         $nilai = new m_nilai;
-        $result_nilai = $nilai->getDataNilai();
+        $result_nilai = $nilai->getDataNilai($id);
 
         //mendapatkan semua data
         if ($result_nilai) {

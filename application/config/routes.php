@@ -91,7 +91,7 @@ $route['absen_deleted/(:any)']                     = 'Absen/PresenceDeleted/Pres
 $route['absen_updated/(:any)']                     = 'Absen/PresenceUpdated/PresenceUpdated/$1'; 
 
 //Nilai Peserta - (oke)
-$route['nilai_all_list']                           = 'Nilai/NilaiListAll/index';
+$route['nilai_all_list/(:any)']                           = 'Nilai/NilaiListAll/index/$1';
 $route['nilai_by_id/(:any)']                       = 'Nilai/NilaiGetId/NilaiGetById/$1';
 $route['nilai_add']                                = 'Nilai/NilaiAdd/AddNilai';
 $route['nilai_deleted/(:any)']                     = 'Nilai/NilaiDeleted/NilaiDeleted/$1';
