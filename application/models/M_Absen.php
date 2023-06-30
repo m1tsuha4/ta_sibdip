@@ -70,10 +70,7 @@ class M_Absen extends CI_Model
     //updated Data
     public function updateAbsen($id,$data)
     {
-		$this->db->set('present_status', $data['present_status']);
-		$this->db->where('present_id', $id);
-		$this->db->where('present_status !=', $data['present_status']);
-		$this->db->update($this->user_tabel);
+		$this->db->update($this->user_tabel,$data,['present_id'=>$id]);
 		if ($this->db->affected_rows() >= 0) {
 			return 1;
 		} else {
