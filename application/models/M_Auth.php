@@ -21,9 +21,6 @@ class M_Auth extends CI_Model
     }
 	public function confirmPassword($password){
 		$this->db->get_where($this->_user,['password'=>$password]);
-
 	}
 
 }
-
-?>

@@ -81,6 +81,18 @@ class M_Users extends CI_Model
         $this->db->update($this->user_tabel, $data, ['pegawai_id' => $id,'password'=>$password]);
         return $this->db->affected_rows();
     }
+	public function changePassword($id, $encrypt_current, $encrypt_new) {
+		$this->db->where('pegawai_id', $id);
+		$this->db->where('password', $encrypt_current);
+		$this->db->update($this->user_tabel, ['password' => $encrypt_new]);
+
+		// Check if update was successful
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
     //deleted Data
     public function deletedUsers($id)

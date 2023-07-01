@@ -29,7 +29,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['login']                                    = 'Auth/index';
 
-
 /* ROUTES RESTSERVER SI - BDIP - Pelatihan */
 
 //All User Pegawai dan AdminPd (oke)
@@ -38,6 +37,7 @@ $route['user_by_id/(:any)']                        = 'Users/UserGetId/UsersGetBy
 $route['user_add']                                 = 'Users/UserAdd/AddUsers';
 $route['user_deleted/(:any)']                      = 'Users/UserDeleted/UsersDeleted/$1';
 $route['user_updated/(:any)']                      = 'Users/UserUpdated/UsersUpdated/$1';
+$route['change_password/(:any)']				   = 'Users/Password/index/$1';
 
 //Instructor(Narasumber) - (oke)
 $route['instructor_all_list']                      = 'Instructor/InstructorListAll/index';
