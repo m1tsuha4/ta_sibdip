@@ -79,7 +79,7 @@ public function UsersUpdated_post($id)
 			'email' 			=> $this->post('email', TRUE),
 			'date_updated_employee' 	=> date('Y-m-d H:i:s', time()),
 		];
-		$result_update = $users->updatedUsers($id, $data,$encrypt_pass);
+		$result_update = $users->updatedUsers($id, $data);
 
 		if ($result_update > 0) {
 			$this->response([

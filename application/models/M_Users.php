@@ -85,9 +85,9 @@ class M_Users extends CI_Model
 		return false;
 	}
     //updated Data
-    public function updatedUsers($id, $data,$password)
+    public function updatedUsers($id, $data)
     {
-        $this->db->update($this->user_tabel, $data, ['pegawai_id' => $id,'password'=>$password]);
+        $this->db->update($this->user_tabel, $data, ['pegawai_id' => $id]);
         return $this->db->affected_rows();
     }
 	public function changePassword($id, $encrypt_current, $encrypt_new) {
