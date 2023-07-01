@@ -90,7 +90,7 @@ public function UsersUpdated_post($id)
 		} else {
 			$this->response([
 				'status' => false,
-				'message' => 'Failed To Updated Pegawai'
+				'message' => 'Failed To Updated User'
 			], RestController::HTTP_BAD_REQUEST);
 		}
 	} else {

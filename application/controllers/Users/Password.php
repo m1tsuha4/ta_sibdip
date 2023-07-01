@@ -31,19 +31,18 @@ class Password extends RestController
 		}
 
 		$encrypt_new = hash('sha512', $newPassword.$this->key);
-		$this->load->model('m_asistent');
 		$success = $this->m_users->changePassword($id, $encrypt_current, $encrypt_new);
 
 		if ($success > 0) {
 			$this->response([
-				'status'                => 200,
+				'status'               	=> 200,
 				'error' => null,
 				'message' => 'Password changed successfully.'
 			], RestController::HTTP_OK);
 		} else {
 			$this->response([
 				'status' => false,
-				'message' => 'Failed to change password.'
+				'message' => 'The password you entered is incorrect.'
 			], RestController::HTTP_BAD_REQUEST);
 		}
 	}
