@@ -19,7 +19,7 @@ public function InstructorUpdated_post($id)
     $instructor = new m_instructor;
 
     $data_instructor = $this->m_instructor->GetByIdInstructor($id);
-
+	@unlink($data_instructor[0]['avatar']);
      //Upload Gambar
      $file = $_FILES['avatar'];
         

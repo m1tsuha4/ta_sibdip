@@ -18,7 +18,7 @@ class PesertaUpdated extends RestController {
         $peserta = new m_peserta;
 
         $data_peserta = $this->m_peserta->GetByIdPeserta($id);
-    
+		@unlink($data_peserta[0]['avatar']);
          //Upload Gambar
         $file = $_FILES['avatar'];
         

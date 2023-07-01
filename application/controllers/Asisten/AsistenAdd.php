@@ -55,8 +55,6 @@ public function AssistantAdd_post()
                 $path_file = './'.$path.$uploadData['file_name'];
             }
         }
-//		$level = $this->post('level', 'assistant');
-		$level = 'assistant';
         //load Data
         $insert_data = [
             'pegawai_id'                => $asistent->idterurut($i),

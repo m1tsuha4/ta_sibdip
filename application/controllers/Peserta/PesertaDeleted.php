@@ -17,8 +17,8 @@ class PesertaDeleted extends RestController {
         $peserta = new m_peserta;
         
         //menghapus avatar
-//        $data_peserta = $this->m_peserta->GetByIdPeserta($id);
-//        @unlink($data_peserta[0]['avatar']);
+        $data_peserta = $this->m_peserta->GetByIdPeserta($id);
+        @unlink($data_peserta[0]['avatar']);
         $cekData = $peserta->deletedPeserta($id);
 
         if ($cekData > 0) {

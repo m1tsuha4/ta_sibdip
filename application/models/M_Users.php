@@ -75,6 +75,15 @@ class M_Users extends CI_Model
         return $this->db->affected_rows();
     }
 
+	public function checkPassword($id,$password){
+		$user = $this->db->get_where($this->user_tabel,['pegawai_id' => $id])->row();
+		if($user){
+			if($password === $user->password){
+				return true;
+			}
+		}
+		return false;
+	}
     //updated Data
     public function updatedUsers($id, $data,$password)
     {
