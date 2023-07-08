@@ -22,8 +22,6 @@ class M_Nilai extends CI_Model
 
 public function getDataNilai($id)
 {
-//    $query = $this->db->get('tb_student');
-//    return $query->result_array();
 	$sql = "SELECT n.score_id, n.assessment_id, n.material_id, n.student_id, s.fullname, s.address, n.pretest, n.posttest 
 	FROM tb_score n INNER JOIN tb_student s ON n.student_id = s.student_id WHERE n.material_id = '$id'";
 	return $this->db->query($sql)->result_array();

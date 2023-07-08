@@ -20,15 +20,6 @@ class PresenceAdd extends RestController {
 
         $i = $this->db->count_all('tb_present');
 
-//        $insert_data = [
-//                    'student_id'                    => $absen->idterurut($i),
-//                    'assessment_id'                 => $this->post('assessment_id'),
-//                    'fullname'                      => $this->post('fullname'),
-//                    'address'                       => $this->post('address'),
-//                    'present'                       => $this->post('present'),
-//                    'total_present'                 => $this->post('total_present'),
-//                    'signature'                     => $this->post('signature'),
-//        ];
 		$insert_data = [
 			'present_id'					=> $absen->idterurut($i),
 			'student_id'                    => $this->post('student_id'),

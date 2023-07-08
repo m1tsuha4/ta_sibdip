@@ -92,24 +92,24 @@ class PesertaAdd extends RestController {
         //Memasukkan Data 
         $result = $peserta->insertPeserta($insert_data);
 		$last_student_id = $this->db->insert_id();
-// insert tb_score
 
-
+		// insert tb_score
 		$score = $this->m_jadwal->GetByIdJadwal($id);
 
 		if ($score) {
 			foreach ($score as $row) {
 				$assessmentId = $row['assessment_id'];
 				$materialId = $row['material_id'];
-				// Lakukan proses insert ke database menggunakan assessmentId dan materialId
+
 				$data = array(
 					'student_id' => $last_student_id,
 					'assessment_id' => $assessmentId,
 					'material_id' => $materialId,
 				);
-				$this->db->insert('tb_score', $data); // Ganti dengan nama tabel yang sesuai
+				$this->db->insert('tb_score', $data);
 			}
 		}
+
 		// insert tb_present
 		$user_data = $this->m_diklat->GetDataDate($id);
 
