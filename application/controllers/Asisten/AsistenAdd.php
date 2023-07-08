@@ -11,6 +11,7 @@ class AsistenAdd extends RestController {
         parent::__construct();
         $this->load->model('m_asistent');
         $this->load->library('form_validation');
+		$this->key = '1234567890';
     }
 //oke
 //menambahkan data
@@ -19,7 +20,8 @@ public function AssistantAdd_post()
     $asistent = new m_asistent;
 
     $i = $this->db->count_all('tb_pegawai');
-
+	$password = '12345';
+	$encrypt_pass = hash('sha512', $password. $this->key);
     //set rule validasi
     if ($this->_validationCheck() === FALSE) {
         $this->response([
@@ -75,14 +77,8 @@ public function AssistantAdd_post()
             'id_kecamatan'              => $this->post('id_kecamatan', TRUE),
             'id_kelurahan'              => $this->post('id_kelurahan', TRUE),
             'telepon'                   => $this->post('telepon', TRUE),
-//            'email'                     => $this->post('email', TRUE),
-//            'agama'                     => $this->post('agama', TRUE),
-//            'status_perkawinan'         => $this->post('status_perkawinan', TRUE),
             'pendidikan'                => $this->post('pendidikan', TRUE),
-//            'jurusan'                   => $this->post('jurusan', TRUE),
-//            'tahun_tamat'               => $this->post('tahun_tamat', TRUE),
             'jabatan'                   => $this->post('jabatan', TRUE),
-//            'jabatan_ext'               => $this->post('jabatan_ext', TRUE),
             'pangkat'                   => $this->post('pangkat', TRUE),
             'golongan'                  => $this->post('golongan', TRUE),
             'office'                    => $this->post('office', TRUE),
@@ -94,22 +90,10 @@ public function AssistantAdd_post()
             'special_sub'               => $this->post('special_sub', TRUE),
             'npwp'                      => $this->post('npwp', TRUE),
             'no_npwp'                   => $this->post('no_npwp', TRUE),
-//            'type_status'               => $this->post('type_status', TRUE),
             'username'                  => $asistent->idterurut($i),
-            'password'                  => '12345',
+            'password'                  => $encrypt_pass,
 			'level'						=> 'assistant',
-//            'level'                     => $this->post('level', TRUE),
-//            'role'                      => $this->post('role', TRUE),
             'avatar'                    => $path_file,
-//            'avatar_slug'               => $this->post('avatar_slug', TRUE),
-//            'ava'                       => $this->post('ava', TRUE),
-//            'signature'                 => $this->post('signature', TRUE),
-//            'blocked'                   => $this->post('blocked', TRUE),
-//            'activated'                 => $this->post('activated', TRUE),
-//            'token'                     => $this->post('token', TRUE),
-//            'status_token'              => $this->post('status_token', TRUE),
-//            'date_token'                => $this->post('date_token', TRUE),
-//            'end_token'                 => $this->post('end_token', TRUE),
             'date_added_employee'       => date('Y-m-d H:i:s', time()),
             'date_updated_employee'     => date('Y-m-d H:i:s', time()),
         ];
