@@ -58,9 +58,9 @@ public function AssistantAdd_post()
         //load Data
         $insert_data = [
             'pegawai_id'                => $asistent->idterurut($i),
-            'sort_id'                   => $this->post('sort_id', TRUE),
-            'assistant'                 => $this->post('assistant', TRUE),
-            'sort_number'               => $this->post('sort_number', TRUE),
+            'sort_id'                   => 0,
+            'assistant'                 => 'Y',
+            'sort_number'               => 0,
             'nik'                       => $this->post('nik', TRUE),
             'nip'                       => $this->post('nip', TRUE),
             'gelar_depan'               => $this->post('gelar_depan', TRUE),
@@ -75,14 +75,14 @@ public function AssistantAdd_post()
             'id_kecamatan'              => $this->post('id_kecamatan', TRUE),
             'id_kelurahan'              => $this->post('id_kelurahan', TRUE),
             'telepon'                   => $this->post('telepon', TRUE),
-            'email'                     => $this->post('email', TRUE),
-            'agama'                     => $this->post('agama', TRUE),
-            'status_perkawinan'         => $this->post('status_perkawinan', TRUE),
+//            'email'                     => $this->post('email', TRUE),
+//            'agama'                     => $this->post('agama', TRUE),
+//            'status_perkawinan'         => $this->post('status_perkawinan', TRUE),
             'pendidikan'                => $this->post('pendidikan', TRUE),
-            'jurusan'                   => $this->post('jurusan', TRUE),
-            'tahun_tamat'               => $this->post('tahun_tamat', TRUE),
+//            'jurusan'                   => $this->post('jurusan', TRUE),
+//            'tahun_tamat'               => $this->post('tahun_tamat', TRUE),
             'jabatan'                   => $this->post('jabatan', TRUE),
-            'jabatan_ext'               => $this->post('jabatan_ext', TRUE),
+//            'jabatan_ext'               => $this->post('jabatan_ext', TRUE),
             'pangkat'                   => $this->post('pangkat', TRUE),
             'golongan'                  => $this->post('golongan', TRUE),
             'office'                    => $this->post('office', TRUE),
@@ -94,21 +94,22 @@ public function AssistantAdd_post()
             'special_sub'               => $this->post('special_sub', TRUE),
             'npwp'                      => $this->post('npwp', TRUE),
             'no_npwp'                   => $this->post('no_npwp', TRUE),
-            'type_status'               => $this->post('type_status', TRUE),
-            'username'                  => $this->post('username', TRUE),
-            'password'                  => $this->post('password', TRUE),
+//            'type_status'               => $this->post('type_status', TRUE),
+            'username'                  => $asistent->idterurut($i),
+            'password'                  => '12345',
 			'level'						=> 'assistant',
-            'role'                      => $this->post('role', TRUE),
+//            'level'                     => $this->post('level', TRUE),
+//            'role'                      => $this->post('role', TRUE),
             'avatar'                    => $path_file,
-            'avatar_slug'               => $this->post('avatar_slug', TRUE),
-            'ava'                       => $this->post('ava', TRUE),
-            'signature'                 => $this->post('signature', TRUE),
-            'blocked'                   => $this->post('blocked', TRUE),
-            'activated'                 => $this->post('activated', TRUE),
-            'token'                     => $this->post('token', TRUE),
-            'status_token'              => $this->post('status_token', TRUE),
-            'date_token'                => $this->post('date_token', TRUE),
-            'end_token'                 => $this->post('end_token', TRUE),
+//            'avatar_slug'               => $this->post('avatar_slug', TRUE),
+//            'ava'                       => $this->post('ava', TRUE),
+//            'signature'                 => $this->post('signature', TRUE),
+//            'blocked'                   => $this->post('blocked', TRUE),
+//            'activated'                 => $this->post('activated', TRUE),
+//            'token'                     => $this->post('token', TRUE),
+//            'status_token'              => $this->post('status_token', TRUE),
+//            'date_token'                => $this->post('date_token', TRUE),
+//            'end_token'                 => $this->post('end_token', TRUE),
             'date_added_employee'       => date('Y-m-d H:i:s', time()),
             'date_updated_employee'     => date('Y-m-d H:i:s', time()),
         ];
@@ -154,12 +155,15 @@ public function AssistantAdd_post()
         $this->form_validation->set_rules( 'tanggal_lahir', 'Tanggal lahir', 'required',
         array('required' => '{field} wajib diisi')
         );
-        $this->form_validation->set_rules( 'agama', 'Agama Anda', 'required',
+/*        $this->form_validation->set_rules( 'agama', 'Agama Anda', 'required',
         array('required' => '{field} wajib diisi')
         );
+
         $this->form_validation->set_rules( 'status_perkawinan', 'Status Perkawinan Anda', 'required',
         array('required' => '{field} wajib diisi')
         );
+*/
+
         $this->form_validation->set_rules( 'alamat', 'Alamat Rumah', 'required',
         array('required' => '{field} wajib diisi')
         );
@@ -167,9 +171,11 @@ public function AssistantAdd_post()
         array('required' => '{field} wajib diisi',
         'numeric' => '{field} harus angka')
         );
+/*
         $this->form_validation->set_rules( 'email', 'Email Anda', 'required',
         array('required' => '{field} wajib diisi')
         );
+*/
         $this->form_validation->set_rules( 'pendidikan', 'Pendidikan Terakhir Anda', 'required',
         array('required' => '{field} wajib diisi')
         );
