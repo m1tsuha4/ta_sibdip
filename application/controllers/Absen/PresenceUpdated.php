@@ -19,7 +19,8 @@ class PresenceUpdated extends RestController {
 
         $data = [
 			'present_status' =>$this->post('present_status'),
-			'present_ket' =>$this->post('present_ket')
+			'present_ket' =>$this->post('present_ket'),
+            'present_date_updated' => date('Y-m-d H:i:s', time())
         ];
 
         $update_result = $absen->updateAbsen($id,$data);
