@@ -22,7 +22,6 @@ class PesertaAdd extends RestController {
         $peserta = new m_peserta;
 
         $i = $this->db->count_all('tb_student');
-		$studendId = $peserta->idterurut($i);
 		$id = $this->input->post('assessment_id');
 
 

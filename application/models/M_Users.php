@@ -63,10 +63,6 @@ class M_Users extends CI_Model
             
         return $query;
     }
-//	public function getDataDivison()
-//	{
-//
-//	}
 
     //insert data
     public function insertUsers($data)
