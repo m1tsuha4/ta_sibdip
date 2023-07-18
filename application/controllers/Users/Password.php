@@ -1,8 +1,6 @@
 <?php
 
 use chriskacerguis\RestServer\RestController;
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 
 class Password extends RestController
 {
@@ -21,7 +19,6 @@ class Password extends RestController
 		$newPassword = $this->input->post('new_password');
 		$confirmPassword = $this->input->post('confirm_password');
 		$encrypt_current = hash('sha512', $currentPassword.$this->key);
-
 		// Validasi password baru dan konfirmasi password
 		if ($newPassword !== $confirmPassword) {
 			$this->response([

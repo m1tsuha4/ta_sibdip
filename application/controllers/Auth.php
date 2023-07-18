@@ -30,34 +30,56 @@ class Auth extends RestController
         $encrypt_pass = hash('sha512', $password.$this->key);
         $datauser = $this->auth->doLogin($username,  $encrypt_pass);
 
-        if($datauser)
-        {
-            $payload = [
-                'pegawai_id' => $datauser[0]->pegawai_id,
-                'nama' => $datauser[0]->nama,
-                'username' => $datauser[0]->username,
-                'iat' => $date->getTimestamp(), //waktu token digenerate
-                'exp' => $date->getTimestamp()+(60*10) //token berlaku 3 menit
-            ];
-            
-            $token = JWT::encode($payload, $this->key, 'HS256');
-                $this->response([
-                    'status' => true,
-                    'message' => 'login berhasil',
-                    'result' => [
-                                    'pegawai_id' => $datauser[0]->pegawai_id,
-                                    'nama' => $datauser[0]->nama,
-                                    'username' => $datauser[0]->username,
-                    ],
-                    'token' => $token
-                ], RestController::HTTP_OK); 
-        }
-        else {
-            $this->response([
-                'status' => false,
-                'message' => 'username dan password Salah',
-            ], RestController::HTTP_FORBIDDEN);
-        }
+		if($datauser) {
+			$id =  $datauser[0]->pegawai_id;
+			$isCommitee = $this->auth->isCommitee($id);
+			$isInstructor = $this->auth->isInstructor($id);
+			$payload = [
+				'pegawai_id' => $datauser[0]->pegawai_id,
+				'nama' => $datauser[0]->nama,
+				'username' => $datauser[0]->username,
+				'iat' => $date->getTimestamp(), //waktu token digenerate
+				'exp' => $date->getTimestamp() + (60 * 10) //token berlaku 3 menit
+			];
+			if ($datauser[0]->level == 'admin') {
+				if ($isCommitee == 1 || $isInstructor == 1) {
+					$token = JWT::encode($payload, $this->key, 'HS256');
+					$this->response([
+						'status' => true,
+						'message' => 'login berhasil',
+						'result' => [
+							'pegawai_id' => $datauser[0]->pegawai_id,
+							'nama' => $datauser[0]->nama,
+							'username' => $datauser[0]->username,
+						],
+						'token' => $token
+					], RestController::HTTP_OK);
+				} else {
+					$this->response([
+						'status' => false,
+						'message' => 'Maaf, Mohon Gunakan Aplikasi Admin',
+					], RestController::HTTP_FORBIDDEN);
+				}
+			}else if ($datauser[0]->level != 'admin'){
+				$token = JWT::encode($payload, $this->key, 'HS256');
+				$this->response([
+					'status' => true,
+					'message' => 'login berhasil',
+					'result' => [
+						'pegawai_id' => $datauser[0]->pegawai_id,
+						'nama' => $datauser[0]->nama,
+						'username' => $datauser[0]->username,
+					],
+					'token' => $token
+				], RestController::HTTP_OK);
+			}
+		}
+		else {
+				$this->response([
+					'status' => false,
+					'message' => 'username dan password Salah',
+				], RestController::HTTP_FORBIDDEN);
+		}
     }
 
     protected function cektoken()

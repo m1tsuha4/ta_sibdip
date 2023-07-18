@@ -98,6 +98,30 @@ class M_Users extends CI_Model
 			return false;
 		}
 	}
+	public function countUsername($username){
+		$query = $this->db->query("SELECT COUNT(*) AS username_count FROM tb_pegawai WHERE username = '$username'");
+		$result = $query->row();
+		$usernameCount = $result->username_count;
+		return $usernameCount;
+	}
+	public function countEmail($email){
+		$query = $this->db->query("SELECT COUNT(*) AS email_count FROM tb_pegawai WHERE email = '$email'");
+		$result = $query->row();
+		$emailCount = $result->email_count;
+		return $emailCount;
+	}
+	public function changeProfile($id,$encrypt_current,$username,$email){
+		$this->db->where('pegawai_id', $id);
+		$this->db->where('password', $encrypt_current);
+		$this->db->update($this->user_tabel, ['username' => $username,'email'=> $email]);
+
+		// Check if update was successful
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
     //deleted Data
     public function deletedUsers($id)

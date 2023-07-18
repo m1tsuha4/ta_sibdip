@@ -38,6 +38,8 @@ $route['user_add']                                 = 'Users/UserAdd/AddUsers';
 $route['user_deleted/(:any)']                      = 'Users/UserDeleted/UsersDeleted/$1';
 $route['user_updated/(:any)']                      = 'Users/UserUpdated/UsersUpdated/$1';
 $route['change_password/(:any)']				   = 'Users/Password/index/$1';
+$route['user_authorization/(:any)']				   = 'Users/Authorization/index/$1';
+$route['change_profile/(:any)']				  	   = 'Users/Profile/index/$1';
 
 //Instructor(Narasumber) - (oke)
 $route['instructor_all_list']                      = 'Instructor/InstructorListAll/index';
@@ -62,7 +64,7 @@ $route['asisten_deleted/(:any)']                   = 'Asisten/AsistenDeleted/Ass
 $route['asisten_updated/(:any)']                   = 'Asisten/AsistenUpdated/AssistantUpdated/$1';
 
 //Peserta - (belum oke)
-$route['peserta_all_list/(:any)']                  = 'Peserta/PesertaListAll/index/$1';
+$route['peserta_all_list/(:any)/(:any)']                  = 'Peserta/PesertaListAll/index/$1/$2';
 $route['peserta_by_id/(:any)']                     = 'Peserta/PesertaGetId/PesertaGetById/$1';
 $route['peserta_add']                              = 'Peserta/PesertaAdd/AddPeserta';
 $route['peserta_deleted/(:any)']                   = 'Peserta/PesertaDeleted/PesertaDeleted/$1';
@@ -85,14 +87,14 @@ $route['jadwal_updated/(:any)']						= 'Jadwal/JadwalUpdated/JadwalUpdated/$1';
 
 //Absen Peserta - (oke)
 $route['absen_all_list/(:any)/(:any)']             = 'Absen/PresenceListAll/index/$1/$2';
-$route['absen_by_id/(:any)/(:any)']                       = 'Absen/PresenceGetId/PresenceGetById/$1/$2';
+$route['absen_by_id/(:any)/(:any)/(:any)']                       = 'Absen/PresenceGetId/PresenceGetById/$1/$2/$3';
 $route['absen_add']                                = 'Absen/PresenceAdd/AddPresence';
 $route['absen_deleted/(:any)']                     = 'Absen/PresenceDeleted/PresenceDeleted/$1';
 $route['absen_updated/(:any)']                     = 'Absen/PresenceUpdated/PresenceUpdated/$1'; 
 
 //Nilai Peserta - (oke)
 $route['nilai_all_list/(:any)']                           = 'Nilai/NilaiListAll/index/$1';
-$route['nilai_by_id/(:any)']                       = 'Nilai/NilaiGetId/NilaiGetById/$1';
+$route['nilai_by_id/(:any)/(:any)']                       = 'Nilai/NilaiGetId/NilaiGetById/$1/$2';
 $route['nilai_add']                                = 'Nilai/NilaiAdd/AddNilai';
 $route['nilai_deleted/(:any)']                     = 'Nilai/NilaiDeleted/NilaiDeleted/$1';
 $route['nilai_updated/(:any)']                     = 'Nilai/NilaiUpdated/NilaiUpdated/$1'; 
