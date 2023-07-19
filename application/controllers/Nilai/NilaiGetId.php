@@ -10,16 +10,16 @@ class NilaiGetId extends RestController {
         // Construct the parent class
         parent::__construct();
         $this->load->model('m_nilai');
-		$this->load->model('m_auth', 'auth');
+		$this->load->model('m_users');
     }
 
     //mendapatkan id
-    public function NilaiGetById_get($pegawaiId,$cari)
+    public function NilaiGetById_get($pegawaiId,$id,$cari)
     {
         $nilai = new m_nilai;
         $result = $nilai->GetByIdNilai($cari);
-		$isCommitee = $this->auth->isCommitee($pegawaiId);
-		$isInstructor = $this->auth->isInstructor($pegawaiId);
+		$isCommitee = $this->m_users->isCommitee($pegawaiId,$id);
+		$isInstructor = $this->m_users->isInstructor($pegawaiId,$id);
 		if($isCommitee==1){
 			//datanya 1
 			if (count($result) > 1) {

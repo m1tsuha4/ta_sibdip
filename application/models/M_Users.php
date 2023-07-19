@@ -123,6 +123,19 @@ class M_Users extends CI_Model
 		}
 	}
 
+	public function isCommitee($pegawaiId,$id){
+		$sql = "SELECT EXISTS(SELECT pegawai_id FROM tb_committee WHERE pegawai_id = $pegawaiId AND assessment_id = $id) AS is_committee;";
+		$query = $this->db->query($sql)->result_array();
+		$isCommittee = $query[0]['is_committee'];
+		return $isCommittee;
+	}
+	public function isInstructor($pegawaiId,$id){
+		$sql = "SELECT EXISTS(SELECT pegawai_id FROM tb_assessment WHERE pegawai_id = $pegawaiId AND assessment_id = $id) AS is_instructor;";
+		$query = $this->db->query($sql)->result_array();
+		$isInstructor = $query[0]['is_instructor'];
+		return $isInstructor;
+	}
+
     //deleted Data
     public function deletedUsers($id)
     {

@@ -10,7 +10,7 @@ class PresenceGetId extends RestController {
         // Construct the parent class
         parent::__construct();
         $this->load->model('m_absen');
-		$this->load->model('m_auth', 'auth');
+		$this->load->model('m_users','users');
     }
 
     //mendapatkan id
@@ -18,8 +18,8 @@ class PresenceGetId extends RestController {
     {
         $absen = new m_absen;
         $result = $absen->GetByIdAbsen($id,$date);
-		$isCommitee = $this->auth->isCommitee($pegawaiId);
-		$isInstructor = $this->auth->isInstructor($pegawaiId);
+		$isCommitee = $this->users->isCommitee($pegawaiId,$id);
+		$isInstructor = $this->users->isInstructor($pegawaiId,$id);
 		if($isCommitee==1){
 			//datanya 1
 			if (count($result) > 1) {
