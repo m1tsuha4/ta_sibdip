@@ -46,7 +46,7 @@ class Auth extends RestController
 					$token = JWT::encode($payload, $this->key, 'HS256');
 					$this->response([
 						'status' => true,
-						'message' => 'login berhasil',
+						'message' => 'Login Sukses, tetapi Hak Akses Anda Sebagai Admin akan diabaikan',
 						'result' => [
 							'pegawai_id' => $datauser[0]->pegawai_id,
 							'nama' => $datauser[0]->nama,
