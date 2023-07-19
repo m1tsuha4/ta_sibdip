@@ -38,27 +38,15 @@ class DiklatGetId extends RestController {
 				'data' => $resultInstructor
 			], RestController::HTTP_OK);
 		} elseif (!empty($result) && !empty($resultInstructor)) {
-			$committee = $result[0]->assessment_id;
-			$instructor = $resultInstructor[0]->assessment_id;
-			if ($committee == $instructor){
-				$this->response([
-					'status' => 200,
-					'error' => false,
-					'message' => 'Data dari penggabungan panitia dan instructor',
-					'totaldata' => count($result),
-					'data' => $result
-				], RestController::HTTP_OK);
-			} else{
-				$mergedRow = array_merge($result,$resultInstructor);
-				$unique = array_unique($mergedRow);
-				$this->response([
-					'status' => 200,
-					'error' => false,
-					'message' => 'Data dari penggabungan panitia dan instructor',
-					'totaldata' => count($unique),
-					'data' => $unique
-				], RestController::HTTP_OK);
-			}
+			$mergedRow = array_merge($result,$resultInstructor);
+			$unique = array_unique($mergedRow);
+			$this->response([
+				'status' => 200,
+				'error' => false,
+				'message' => 'Data dari penggabungan panitia dan instructor',
+				'totaldata' => count($unique),
+				'data' => $unique
+			], RestController::HTTP_OK);
 		} else {
 			$this->response([
 				'status' => 404,
