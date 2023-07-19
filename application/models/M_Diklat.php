@@ -39,7 +39,7 @@ public function getDataDiklat()
 
 
 	public function GetByIdDiklat($id){
-		$sql = "SELECT * FROM tb_committee c 
+		$sql = "SELECT a.* FROM tb_committee c 
     	INNER JOIN tb_assessment a ON c.assessment_id = a.assessment_id
 		WHERE c.pegawai_id='$id' AND a.assessment_year=2021";
 //		$this->db->or_like('assessment_id',  $id);
