@@ -39,7 +39,10 @@ class DiklatGetId extends RestController {
 			], RestController::HTTP_OK);
 		} elseif (!empty($result) && !empty($resultInstructor)) {
 			$mergedRow = array_merge($result,$resultInstructor);
-			$unique = array_unique($mergedRow);
+//			$unique = array_unique($mergedRow);
+			$string = array_map('json_encode', $mergedRow);
+			$uniqueStrings = array_unique($string);
+			$unique = array_map('json_decode', $uniqueStrings, array_fill(0, count($uniqueStrings), true));
 			$this->response([
 				'status' => 200,
 				'error' => false,

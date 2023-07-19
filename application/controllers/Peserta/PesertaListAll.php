@@ -81,8 +81,7 @@ class PesertaListAll extends RestController
 					'data' => NULL
 				], RestController::HTTP_NOT_FOUND);
 			}
-		} else {
-			if($isInstructor==1){
+		} else if($isInstructor==1){
 				//mendapatkan semua data
 				if ($result_peserta) {
 					$this->response([
@@ -103,6 +102,12 @@ class PesertaListAll extends RestController
 					], RestController::HTTP_NOT_FOUND);
 				}
 			}
+		else {
+			$this->response([
+				'status' => 404,
+				'error' => "true",
+				'message' => 'Maaf data tidak ditemukan',
+			], RestController::HTTP_BAD_REQUEST);
 		}
 
 	}

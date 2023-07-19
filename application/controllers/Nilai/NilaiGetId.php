@@ -51,8 +51,7 @@ class NilaiGetId extends RestController {
 					'message' => 'Maaf data ' . $cari . ' tidak ditemukan',
 				], RestController::HTTP_BAD_REQUEST);
 			}
-		} else {
-			if ($isInstructor == 1) {
+		} else if ($isInstructor == 1) {
 				//datanya 1
 				if (count($result) > 1) {
 					$this->response([
@@ -82,6 +81,12 @@ class NilaiGetId extends RestController {
 					], RestController::HTTP_BAD_REQUEST);
 				}
 			}
+		else{
+			$this->response([
+				'status' => 404,
+				'error' => "true",
+				'message' => 'Maaf data tidak ditemukan',
+			], RestController::HTTP_BAD_REQUEST);
 		}
 
     }

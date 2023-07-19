@@ -43,14 +43,14 @@ public function getDataDiklat()
     	INNER JOIN tb_assessment a ON c.assessment_id = a.assessment_id
 		WHERE c.pegawai_id='$id' AND a.assessment_year=2021";
 //		$this->db->or_like('assessment_id',  $id);
-		$query = $this->db->query($sql)->result();
+		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
 	public function GetByIdInstructor($id){
 		$sql = "SELECT * FROM tb_assessment 
 		WHERE pegawai_id='$id' AND assessment_year=2021";
 //		$this->db->or_like('assessment_id',  $id);
-		$query = $this->db->query($sql)->result();
+		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
 	public function GetDataDate($id){
