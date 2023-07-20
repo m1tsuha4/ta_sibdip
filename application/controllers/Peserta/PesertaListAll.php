@@ -75,11 +75,13 @@ class PesertaListAll extends RestController
 			} //data tidak ditemukan
 			else {
 				$this->response([
-					'status' => 404,
-					'error' => true,
+					'status' => 200,
+					'error' => false,
 					'message' => 'Data Tidak Ditemukan',
-					'data' => NULL
-				], RestController::HTTP_NOT_FOUND);
+					'totaldata' => 0,
+					'data' => [],
+					'action_as' => 'Committee'
+				], RestController::HTTP_OK);
 			}
 		} else if($isInstructor==1){
 				//mendapatkan semua data
@@ -95,11 +97,13 @@ class PesertaListAll extends RestController
 				} //data tidak ditemukan
 				else {
 					$this->response([
-						'status' => 404,
-						'error' => true,
+						'status' => 200,
+						'error' => false,
 						'message' => 'Data Tidak Ditemukan',
-						'data' => NULL
-					], RestController::HTTP_NOT_FOUND);
+						'totaldata' => 0,
+						'data' => [],
+						'action_as' => 'Instructor'
+					], RestController::HTTP_OK);
 				}
 			}
 		else {
