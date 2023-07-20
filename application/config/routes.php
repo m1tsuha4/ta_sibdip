@@ -94,7 +94,8 @@ $route['absen_updated/(:any)']                     = 'Absen/PresenceUpdated/Pres
 
 //Nilai Peserta - (oke)
 $route['nilai_all_list/(:any)']                    = 'Nilai/NilaiListAll/index/$1';
-$route['nilai_by_id/(:any)/(:any)/(:any)']         = 'Nilai/NilaiGetId/NilaiGetById/$1/$2/$3';
+//$route['nilai_by_id/(:any)/(:any)/(:any)']         = 'Nilai/NilaiGetId/NilaiGetById/$1/$2/$3';
+$route['nilai_by_id/(:any)/(:any)']                = 'Nilai/NilaiGetId/NilaiGetById/$1/$2';
 $route['nilai_add']                                = 'Nilai/NilaiAdd/AddNilai';
 $route['nilai_deleted/(:any)']                     = 'Nilai/NilaiDeleted/NilaiDeleted/$1';
 $route['nilai_updated/(:any)']                     = 'Nilai/NilaiUpdated/NilaiUpdated/$1'; 
