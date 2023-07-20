@@ -14,44 +14,15 @@ class NilaiGetId extends RestController {
     }
 
     //mendapatkan id
-    public function NilaiGetById_get($pegawaiId,$id,$cari)
+    public function NilaiGetById_get($pegawaiId,$cari)
     {
         $nilai = new m_nilai;
         $result = $nilai->GetByIdNilai($cari);
-		$isCommitee = $this->m_users->isCommitee($pegawaiId,$id);
-		$isInstructor = $this->m_users->isInstructor($pegawaiId,$id);
-		if($isCommitee==1){
-			//datanya 1
-			if (count($result) > 1) {
-				$this->response([
-					'status' => 200,
-					'error' => "false",
-					'message' => 'Id or Nama Avalaible',
-					'totaldata' => count($result),
-					'data' => $result,
-					'action_as' => 'Committee'
-				], RestController::HTTP_OK);
-			}
-			//kalau nilainya lebih dari 1
-			elseif (count($result) === 1) {
-				$this->response([
-					'status' => 200,
-					'error' => "false",
-					'message' => 'Id tersedia',
-					'totaldata' => count($result),
-					'data' => $result,
-					'action_as' => 'Committee'
-				], RestController::HTTP_OK);
-			}
-			//kalau nilainya tidak ada
-			else {
-				$this->response([
-					'status' => 404,
-					'error' => "true",
-					'message' => 'Maaf data ' . $cari . ' tidak ditemukan',
-				], RestController::HTTP_BAD_REQUEST);
-			}
-		} else if ($isInstructor == 1) {
+		if(!empty($result)){
+			$id = $result[0]["assessment_id"];
+			$isCommitee = $this->m_users->isCommitee($pegawaiId, $id);
+			$isInstructor = $this->m_users->isInstructor($pegawaiId, $id);
+			if($isCommitee==1){
 				//datanya 1
 				if (count($result) > 1) {
 					$this->response([
@@ -60,9 +31,10 @@ class NilaiGetId extends RestController {
 						'message' => 'Id or Nama Avalaible',
 						'totaldata' => count($result),
 						'data' => $result,
-						'action_as' => 'Instructor'
+						'action_as' => 'Committee'
 					], RestController::HTTP_OK);
-				} //kalau nilainya lebih dari 1
+				}
+				//kalau nilainya lebih dari 1
 				elseif (count($result) === 1) {
 					$this->response([
 						'status' => 200,
@@ -70,9 +42,10 @@ class NilaiGetId extends RestController {
 						'message' => 'Id tersedia',
 						'totaldata' => count($result),
 						'data' => $result,
-						'action_as' => 'Instructor'
+						'action_as' => 'Committee'
 					], RestController::HTTP_OK);
-				} //kalau nilainya tidak ada
+				}
+				//kalau nilainya tidak ada
 				else {
 					$this->response([
 						'status' => 404,
@@ -80,8 +53,45 @@ class NilaiGetId extends RestController {
 						'message' => 'Maaf data ' . $cari . ' tidak ditemukan',
 					], RestController::HTTP_BAD_REQUEST);
 				}
+			} else if ($isInstructor == 1) {
+					//datanya 1
+					if (count($result) > 1) {
+						$this->response([
+							'status' => 200,
+							'error' => "false",
+							'message' => 'Id or Nama Avalaible',
+							'totaldata' => count($result),
+							'data' => $result,
+							'action_as' => 'Instructor'
+						], RestController::HTTP_OK);
+					} //kalau nilainya lebih dari 1
+					elseif (count($result) === 1) {
+						$this->response([
+							'status' => 200,
+							'error' => "false",
+							'message' => 'Id tersedia',
+							'totaldata' => count($result),
+							'data' => $result,
+							'action_as' => 'Instructor'
+						], RestController::HTTP_OK);
+					} //kalau nilainya tidak ada
+					else {
+						$this->response([
+							'status' => 404,
+							'error' => "true",
+							'message' => 'Maaf data ' . $cari . ' tidak ditemukan',
+						], RestController::HTTP_BAD_REQUEST);
+					}
+				}
+			else{
+				$this->response([
+					'status' => 404,
+					'error' => "true",
+					'message' => 'Maaf data tidak ditemukan',
+				], RestController::HTTP_BAD_REQUEST);
 			}
-		else{
+
+		}else{
 			$this->response([
 				'status' => 404,
 				'error' => "true",
@@ -89,6 +99,6 @@ class NilaiGetId extends RestController {
 			], RestController::HTTP_BAD_REQUEST);
 		}
 
-    }
-
+	}
+		
 }
