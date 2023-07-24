@@ -77,13 +77,13 @@ class DiklatAdd extends RestController {
                 $this->response([
                     'status' => 201,
                     'error' => false,
-                    'message' => 'New assessment Created',
+                    'message' => 'Assessment Created',
                 ], RestController::HTTP_CREATED);
             } else {
                 $this->response([
                     'status' => 404,
                     'error' => true,
-                    'message' => 'failed to Create assessment'
+                    'message' => 'Failed to Create assessment'
                 ], RestController::HTTP_BAD_REQUEST);
             }
     

@@ -26,7 +26,7 @@ class NilaiUpdated extends RestController {
         if ($update_result > 0) {
             $this->response([
                 'status' => true,
-                'message' => 'NEW Nilai Updated'
+                'message' => 'Nilai Updated'
             ], RestController::HTTP_OK);
         } else {
             $this->response([

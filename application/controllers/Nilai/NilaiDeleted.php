@@ -27,7 +27,7 @@ class NilaiDeleted extends RestController {
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'ID Nilai Not Found'
+                'message' => 'Data Nilai Tidak Ada'
             ], RestController::HTTP_BAD_REQUEST);
         }
     }

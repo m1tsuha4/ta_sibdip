@@ -131,7 +131,7 @@ class PesertaAdd extends RestController {
             $this->response([
                 'status'                    => 201,
                 'error'                     => false,
-                'message'                   => 'New Peserta Created',
+                'message'                   => 'Peserta Created',
             ], RestController::HTTP_CREATED);
         } else {
             $this->response([

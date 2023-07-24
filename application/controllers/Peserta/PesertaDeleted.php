@@ -18,6 +18,7 @@ class PesertaDeleted extends RestController {
         
         //menghapus avatar
         $data_peserta = $this->m_peserta->GetByIdPeserta($id);
+		$nama = $data_peserta[0]['fullname'];
         @unlink($data_peserta[0]['avatar']);
         $cekData = $peserta->deletedPeserta($id);
 
@@ -25,12 +26,12 @@ class PesertaDeleted extends RestController {
             $this->response([
                 'status' => 200,
                 'error' => null,
-                'message' => 'Peserta Deleted'
+                'message' => 'Peserta '.$nama. ' Deleted'
             ], RestController::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'Maaf ID ' . $id . ' tidak ditemukan'
+                'message' => 'Maaf peserta tidak ada'
             ], RestController::HTTP_BAD_REQUEST);
         }
     }

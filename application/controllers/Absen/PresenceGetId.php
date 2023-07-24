@@ -20,47 +20,18 @@ class PresenceGetId extends RestController {
         $result = $absen->GetByIdAbsen($id,$date);
 		$isCommitee = $this->users->isCommitee($pegawaiId,$id);
 		$isInstructor = $this->users->isInstructor($pegawaiId,$id);
-		if($isCommitee==1){
-			//datanya 1
-			if (count($result) > 1) {
-				$this->response([
-					'status' => 200,
-					'error' => "false",
-					'message' => 'Id or Nama Avalaible',
-					'totaldata' => count($result),
-					'data' => $result,
-					'action_as' => 'Committee'
-				], RestController::HTTP_OK);
-			}
-			//kalau nilainya lebih dari 1
-			elseif (count($result) === 1) {
-				$this->response([
-					'status' => 200,
-					'error' => "false",
-					'message' => 'Id tersedia',
-					'totaldata' => count($result),
-					'data' => $result,
-					'action_as' => 'Committee'
-				], RestController::HTTP_OK);
-			}
-			//kalau nilainya tidak ada
-			else {
-				$this->response([
-					'status' => 404,
-					'error' => "true",
-					'message' => 'Maaf data ' . $date . ' tidak ditemukan',
-				], RestController::HTTP_BAD_REQUEST);
-			}
-		}else if ($isInstructor==1){
+		if(!empty($result)){
+			$judul = $result[0]["assessment_name"];
+			if($isCommitee==1){
 				//datanya 1
 				if (count($result) > 1) {
 					$this->response([
 						'status' => 200,
 						'error' => "false",
-						'message' => 'Id or Nama Avalaible',
+						'message' => 'Absen Available',
 						'totaldata' => count($result),
 						'data' => $result,
-						'action_as' => 'Instructor'
+						'action_as' => 'Committee'
 					], RestController::HTTP_OK);
 				}
 				//kalau nilainya lebih dari 1
@@ -68,10 +39,10 @@ class PresenceGetId extends RestController {
 					$this->response([
 						'status' => 200,
 						'error' => "false",
-						'message' => 'Id tersedia',
+						'message' => 'Absen Available',
 						'totaldata' => count($result),
 						'data' => $result,
-						'action_as' => 'Instructor'
+						'action_as' => 'Committee'
 					], RestController::HTTP_OK);
 				}
 				//kalau nilainya tidak ada
@@ -79,9 +50,39 @@ class PresenceGetId extends RestController {
 					$this->response([
 						'status' => 404,
 						'error' => "true",
-						'message' => 'Maaf data ' . $date. ' tidak ditemukan',
+						'message' => 'Maaf data absen pada tanggal ' . $date . ' di diklat ' .$judul. ' tidak ada',
 					], RestController::HTTP_BAD_REQUEST);
 				}
+			}else if ($isInstructor==1) {
+				//datanya 1
+				if (count($result) > 1) {
+					$this->response([
+						'status' => 200,
+						'error' => "false",
+						'message' => 'Absen Available',
+						'totaldata' => count($result),
+						'data' => $result,
+						'action_as' => 'Instructor'
+					], RestController::HTTP_OK);
+				} //kalau nilainya lebih dari 1
+				elseif (count($result) === 1) {
+					$this->response([
+						'status' => 200,
+						'error' => "false",
+						'message' => 'Absen Available',
+						'totaldata' => count($result),
+						'data' => $result,
+						'action_as' => 'Instructor'
+					], RestController::HTTP_OK);
+				} //kalau nilainya tidak ada
+				else {
+					$this->response([
+						'status' => 404,
+						'error' => "true",
+						'message' => 'Maaf data absen pada tanggal ' . $date . ' di diklat ' .$judul. ' tidak ada',
+					], RestController::HTTP_BAD_REQUEST);
+				}
+			}
 		} else {
 			$this->response([
 				'status' => 404,
@@ -89,8 +90,6 @@ class PresenceGetId extends RestController {
 				'message' => 'Maaf data tidak ditemukan',
 			], RestController::HTTP_BAD_REQUEST);
 		}
-
-
     }
 
 }

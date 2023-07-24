@@ -20,6 +20,7 @@ class NilaiGetId extends RestController {
         $result = $nilai->GetByIdNilai($cari);
 		if(!empty($result)){
 			$id = $result[0]["assessment_id"];
+			$judul = $result[0]["assessment_name"];
 			$isCommitee = $this->m_users->isCommitee($pegawaiId, $id);
 			$isInstructor = $this->m_users->isInstructor($pegawaiId, $id);
 			if($isCommitee==1){
@@ -50,7 +51,7 @@ class NilaiGetId extends RestController {
 					$this->response([
 						'status' => 404,
 						'error' => "true",
-						'message' => 'Maaf data ' . $cari . ' tidak ditemukan',
+						'message' => 'Maaf data materi di diklat' . $judul . ' belum ada',
 					], RestController::HTTP_BAD_REQUEST);
 				}
 			} else if ($isInstructor == 1) {
@@ -79,7 +80,7 @@ class NilaiGetId extends RestController {
 						$this->response([
 							'status' => 404,
 							'error' => "true",
-							'message' => 'Maaf data ' . $cari . ' tidak ditemukan',
+							'message' => 'Maaf data materi di diklat' . $judul . ' belum ada',
 						], RestController::HTTP_BAD_REQUEST);
 					}
 				}
@@ -87,7 +88,7 @@ class NilaiGetId extends RestController {
 				$this->response([
 					'status' => 404,
 					'error' => "true",
-					'message' => 'Maaf data tidak ditemukan',
+					'message' => 'Maaf data materi di diklat' . $judul . ' belum ada',
 				], RestController::HTTP_BAD_REQUEST);
 			}
 

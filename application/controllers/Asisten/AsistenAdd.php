@@ -106,7 +106,7 @@ public function AssistantAdd_post()
             $this->response([
                 'status' => 201,
                 'error' => false,
-                'message' => 'New Asistent Created',
+                'message' => 'Asistent Created',
             ], RestController::HTTP_CREATED);
         } else {
             $this->response([

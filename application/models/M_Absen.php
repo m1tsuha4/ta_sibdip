@@ -33,8 +33,10 @@ class M_Absen extends CI_Model
 
     public function GetByIdAbsen($id,$date)
     {
-		$sql = "SELECT n.present_id, n.assessment_id, n.student_id,n.present_date, n.present_status,
-		n.present_ket, n.present_date_updated, s.fullname, s.address FROM tb_present n INNER JOIN tb_student s ON s.student_id = n.student_id 
+		$sql = "SELECT n.present_id, n.assessment_id, a.assessment_name, n.student_id,n.present_date, n.present_status,
+		n.present_ket, n.present_date_updated, s.fullname, s.address FROM tb_present n 
+		INNER JOIN tb_student s ON s.student_id = n.student_id 
+		INNER JOIN tb_assessment a ON n.assessment_id = a.assessment_id 
 		WHERE n.assessment_id = '$id' AND n.present_date='$date'";
 		$query = $this->db->query($sql)->result_array();
 		return $query;

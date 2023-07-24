@@ -23,7 +23,7 @@ class JadwalGetId extends RestController {
         $this->response([
             'status' => 200,
             'error' => "false",
-            'message' => 'Id or Nama Avalaible',
+            'message' => 'Jadwal Available',
             'totaldata' => count($result),
             'data' => $result
         ], RestController::HTTP_OK);
@@ -33,7 +33,7 @@ class JadwalGetId extends RestController {
         $this->response([
             'status' => 200,
             'error' => "false",
-            'message' => 'Id tersedia',
+            'message' => 'Jadwal Available',
             'totaldata' => count($result),
             'data' => $result
         ], RestController::HTTP_OK);
@@ -43,7 +43,7 @@ class JadwalGetId extends RestController {
         $this->response([
             'status' => 404,
             'error' => "true",
-            'message' => 'Maaf data ' . $cari . ' tidak ditemukan',
+            'message' => 'Maaf data jadwal tidak ditemukan',
         ], RestController::HTTP_BAD_REQUEST);
     }
     }

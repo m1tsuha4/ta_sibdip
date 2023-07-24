@@ -59,7 +59,7 @@ class DiklatUpdated extends RestController {
 		if ($update_result > 0) {
 			$this->response([
 				'status' => true,
-				'message' => 'NEW assessment Updated'
+				'message' => 'Assessment Updated'
 			], RestController::HTTP_OK);
 		} else {
 			$this->response([

@@ -43,7 +43,7 @@ class JadwalAdd extends RestController {
             $this->response([
                 'status' => 201,
                 'error' => false,
-                'message' => 'New jadwal Created',
+                'message' => 'Jadwal Created',
             ], RestController::HTTP_CREATED);
         } else {
             $this->response([

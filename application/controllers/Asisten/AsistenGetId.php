@@ -33,7 +33,7 @@ public function AsistenGetById_get($cari = NULL)
         $this->response([
             'status' => 200,
             'error' => "false",
-            'message' => 'Id tersedia',
+            'message' => 'Id or Nama Avalaible',
             'totaldata' => count($result),
             'data' => $result
         ], RestController::HTTP_OK);
@@ -43,7 +43,7 @@ public function AsistenGetById_get($cari = NULL)
         $this->response([
             'status' => 404,
             'error' => "true",
-            'message' => 'Maaf data ' . $cari . ' tidak ditemukan',
+            'message' => 'Maaf data assistant tidak ditemukan',
         ], RestController::HTTP_BAD_REQUEST);
     }
 

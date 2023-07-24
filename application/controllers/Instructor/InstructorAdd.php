@@ -122,7 +122,7 @@ public function AddInstructor_post()
             $this->response([
                 'status' => 201,
                 'error' => false,
-                'message' => 'New Instructor Created',
+                'message' => 'Instructor Created',
             ], RestController::HTTP_CREATED);
         } else {
             $this->response([

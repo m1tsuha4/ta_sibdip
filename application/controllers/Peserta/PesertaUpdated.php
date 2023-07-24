@@ -81,7 +81,7 @@ class PesertaUpdated extends RestController {
             $this->response([
                 'status' => 200,
                 'error' => null,
-                'message' => 'Id ' . $id . ' telah Berhasil di Updated'
+                'message' => 'Peserta ' . $update_data['fullname'] . ' telah Berhasil di Updated'
             ], RestController::HTTP_OK);
         } else {
             $this->response([

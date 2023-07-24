@@ -19,6 +19,7 @@ public function AssistantUpdated_post($id)
     $asisten = new m_asistent;
 
     $data_asisten = $this->m_asistent->GetByIdAssistant($id);
+
 	@unlink($data_asisten[0]['avatar']);
      //Upload Gambar
      $file = $_FILES['avatar'];
@@ -85,7 +86,7 @@ public function AssistantUpdated_post($id)
         $this->response([
             'status'                => 200,
             'error' => null,
-            'message' => 'Id ' . $id . ' telah Berhasil di Updated'
+            'message' => 'Asisstant ' .$data['nama'] . ' telah Berhasil di Updated'
         ], RestController::HTTP_OK);
     } else {
         $this->response([

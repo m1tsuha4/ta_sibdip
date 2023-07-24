@@ -29,7 +29,7 @@ class InstructorDeleted extends RestController {
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'Maaf ID ' . $id . ' tidak ditemukan'
+                'message' => 'Maaf instructor tidak ditemukan'
             ], RestController::HTTP_BAD_REQUEST);
         }
     }

@@ -85,7 +85,7 @@ public function UsersUpdated_post($id)
 			$this->response([
 				'status' => 200,
 				'error' => null,
-				'message' => 'Id ' . $id . ' Telah Berhasil Updated'
+				'message' => 'User ' . $data['nama'] . ' Telah Berhasil Updated'
 			], RestController::HTTP_OK);
 		} else {
 			$this->response([

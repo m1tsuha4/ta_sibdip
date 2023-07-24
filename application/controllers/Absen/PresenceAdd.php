@@ -37,13 +37,13 @@ class PresenceAdd extends RestController {
             $this->response([
                 'status' => 201,
                 'error' => false,
-                'message' => 'NEW absen Created',
+                'message' => 'Absen Created',
             ], RestController::HTTP_CREATED);
         } else {
             $this->response([
                 'status' => 404,
                 'error' => true,
-                'message' => 'FAILDE TO CREATE absen'
+                'message' => 'FAILED TO CREATE Absen'
             ], RestController::HTTP_BAD_REQUEST);
         }
     }

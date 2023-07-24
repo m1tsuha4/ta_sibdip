@@ -133,7 +133,7 @@ public function AddUsers_post()
             $this->response([
                 'status' => 201,
                 'error' => false,
-                'message' => 'New Pegawai Created',
+                'message' => 'Pegawai Created',
             ], RestController::HTTP_CREATED);
         } else {
             $this->response([

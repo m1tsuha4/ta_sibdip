@@ -15,22 +15,22 @@ class AsistenDeleted extends RestController {
     public function AssistantDeleted_delete($id = null)
     {
         $asisten = new m_asistent;
-        
         //menghapus avatar
         $data_asisten = $this->m_asistent->GetByIdAssistant($id);
-        @unlink($data_asisten[0]['avatar']);
+		$nama = $data_asisten[0]['nama'];
+		@unlink($data_asisten[0]['avatar']);
         $cekData = $asisten->deletedAssistant($id);
 
         if ($cekData > 0) {
             $this->response([
                 'status' => 200,
                 'error' => null,
-                'message' => 'Assistant Deleted'
+                'message' => 'Assistant ' .$nama. ' Deleted'
             ], RestController::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'Maaf ID ' . $id . ' tidak ditemukan'
+                'message' => 'Maaf assistant tidak ada'
             ], RestController::HTTP_BAD_REQUEST);
         }
     }

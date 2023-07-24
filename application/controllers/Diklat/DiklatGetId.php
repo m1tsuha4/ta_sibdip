@@ -54,7 +54,7 @@ class DiklatGetId extends RestController {
 			$this->response([
 				'status' => 404,
 				'error' => true,
-				'message' => 'Maaf, data ' . $cari . ' tidak ditemukan',
+				'message' => 'Maaf, data diklat tidak ditemukan',
 			], RestController::HTTP_BAD_REQUEST);
 		}
     }

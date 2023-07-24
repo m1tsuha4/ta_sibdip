@@ -27,7 +27,7 @@ class JadwalDeleted extends RestController {
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'Maaf ID ' . $id . ' tidak ditemukan'
+                'message' => 'Maaf jadwal tidak ditemukan'
             ], RestController::HTTP_BAD_REQUEST);
         }
     }
