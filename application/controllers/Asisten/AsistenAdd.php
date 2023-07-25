@@ -163,9 +163,11 @@ public function AssistantAdd_post()
         $this->form_validation->set_rules( 'pendidikan', 'Pendidikan Terakhir Anda', 'required',
         array('required' => '{field} wajib diisi')
         );
+        /*
         $this->form_validation->set_rules( 'no_npwp', 'Nomor Pokok Wajib Pajak', 'numeric',
         array('numeric' => '{field} harus angka')
         );
+        */
         // no_npwp
 
         return $this->form_validation->run();
