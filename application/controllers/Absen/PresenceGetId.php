@@ -11,17 +11,21 @@ class PresenceGetId extends RestController {
         parent::__construct();
         $this->load->model('m_absen');
 		$this->load->model('m_users','users');
+		$this->load->model('m_diklat');
     }
 
     //mendapatkan id
     public function PresenceGetById_get($pegawaiId,$id,$date)
     {
         $absen = new m_absen;
+		$diklat = new m_diklat;
         $result = $absen->GetByIdAbsen($id,$date);
 		$isCommitee = $this->users->isCommitee($pegawaiId,$id);
 		$isInstructor = $this->users->isInstructor($pegawaiId,$id);
-		if(!empty($result)){
-			$judul = $result[0]["assessment_name"];
+
+		$diklatNames = $diklat->getDiklatName($id);
+		if(!empty($diklatNames)){
+			$judul = $diklatNames[0]['assessment_name'];
 			if($isCommitee==1){
 				//datanya 1
 				if (count($result) > 1) {
@@ -83,7 +87,7 @@ class PresenceGetId extends RestController {
 					], RestController::HTTP_BAD_REQUEST);
 				}
 			}
-		} else {
+		}else {
 			$this->response([
 				'status' => 404,
 				'error' => "true",
