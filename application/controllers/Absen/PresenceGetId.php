@@ -83,7 +83,7 @@ class PresenceGetId extends RestController {
 					$this->response([
 						'status' => 404,
 						'error' => "true",
-						'message' => 'Maaf data absen pada tanggal ' . $date . ' di diklat ' .$judul. ' tidak ada',
+						'message' => 'Maaf data absen pada tanggal ' . $date . ' di ' .$judul. ' tidak ada',
 					], RestController::HTTP_BAD_REQUEST);
 				}
 			}
