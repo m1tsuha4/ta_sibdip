@@ -183,12 +183,12 @@ class PesertaAdd extends RestController {
         $this->form_validation->set_rules( 'education', 'Pendidikan Terakhir Anda', 'required',
         array('required' => '{field} wajib diisi')
         );
-        $this->form_validation->set_rules( 'department', 'Jurusan Anda', 'required',
+        /*$this->form_validation->set_rules( 'department', 'Jurusan Anda', 'required',
         array('required' => '{field} wajib diisi')
         );
         $this->form_validation->set_rules( 'diploma_year', 'Tahun Ijazah Anda', 'required',
         array('required' => '{field} wajib diisi')
-        );
+        );*/
         $this->form_validation->set_rules( 'student_year', 'Tahun Diklat', 'required',
         array('required' => '{field} wajib diisi')
         );
