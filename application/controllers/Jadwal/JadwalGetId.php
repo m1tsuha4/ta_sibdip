@@ -43,7 +43,7 @@ class JadwalGetId extends RestController {
         $this->response([
             'status' => 404,
             'error' => "true",
-            'message' => 'Maaf data jadwal tidak ditemukan',
+            'message' => 'Maaf data jadwal/materi tidak ditemukan',
         ], RestController::HTTP_BAD_REQUEST);
     }
     }
