@@ -47,7 +47,7 @@ class JadwalGetId extends RestController {
             $this->response([
                 'status' => 404,
                 'error' => "true",
-                'message' => 'Maaf data jadwal/materi ' .$judulDiklat. ' tidak ada',  
+                'message' => 'Maaf data jadwal/materi di ' .$judulDiklat. ' tidak ada',  
             ], RestController::HTTP_BAD_REQUEST);
         }
     }//kalau nilainya tidak ada
