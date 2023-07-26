@@ -42,6 +42,16 @@ class M_Jadwal extends CI_Model
         return $query;
     }
 
+    public function getDiklatName($materialId){
+        $sql = "SELECT a.assessment_name, a.assessment_id
+        FROM tb_assessment a
+        WHERE a.assessment_id = (SELECT assessment_id
+        FROM tb_material m
+        WHERE m.material_id = '$materialId')";
+        $query = $this->db->query($sql)->result_array();
+        return $query;
+    }
+
     //tambah data
     public function insertJadwal($data)
     {
@@ -74,5 +84,3 @@ class M_Jadwal extends CI_Model
 
     
 }
-
-
