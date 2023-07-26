@@ -56,7 +56,7 @@ class NilaiGetId extends RestController {
 					$this->response([
 						'status' => 404,
 						'error' => "true",
-						'message' => 'Maaf data nilai peserta pada materi ' . $judul . ' yang dipilih tidak ada',
+						'message' => 'Maaf data nilai peserta pada materi ' . $judul . ' yang dipilih belum ada',
 					], RestController::HTTP_BAD_REQUEST);
 				}
 			} else if ($isInstructor == 1) {
@@ -85,7 +85,7 @@ class NilaiGetId extends RestController {
 						$this->response([
 							'status' => 404,
 							'error' => "true",
-							'message' => 'Maaf data nilai peserta pada materi ' . $judul . ' yang dipilih tidak ada',
+							'message' => 'Maaf data nilai peserta pada materi ' . $judul . ' yang dipilih belum ada',
 						], RestController::HTTP_BAD_REQUEST);
 					}
 				}
@@ -93,7 +93,7 @@ class NilaiGetId extends RestController {
 				$this->response([
 					'status' => 404,
 					'error' => "true",
-					'message' => 'Maaf data nilai peserta pada materi ' . $judul . ' yang dipilih tidak ada',
+					'message' => 'Maaf data nilai peserta pada materi ' . $judul . ' yang dipilih belum ada',
 				], RestController::HTTP_BAD_REQUEST);
 			}
 
