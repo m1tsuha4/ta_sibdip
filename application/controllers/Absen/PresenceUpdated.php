@@ -28,7 +28,7 @@ class PresenceUpdated extends RestController {
         if ($update_result > 0) {
             $this->response([
                 'status' => true,
-                'message' => 'NEW Absen Updated'
+                'message' => 'Absen Updated'
             ], RestController::HTTP_OK);
         } else {
             $this->response([
