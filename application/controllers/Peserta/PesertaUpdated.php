@@ -75,9 +75,9 @@ class PesertaUpdated extends RestController {
 			'student_year'                  => $this->post('student_year')
 		];
 
-        $result_update = $peserta->updatedPeserta($id, $update_data);
+        $isSuccess = $peserta->updatedPeserta($id, $update_data);
     
-        if ($result_update > 0) {
+        if ($isSuccess) {
             $this->response([
                 'status' => 200,
                 'error' => null,
