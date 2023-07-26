@@ -69,8 +69,17 @@ class M_Peserta extends CI_Model
      //updated Data
      public function updatedPeserta($id, $data)
      {
+         $this->db->trans_start();
          $this->db->update($this->user_tabel, $data, ['student_id' => $id]);
-         return $this->db->affected_rows();
+         $this->db->trans_complete();
+         if ($this->db->affected_rows() > 0) {
+            return TRUE;
+         }else{
+            if($this->db->trans_status() == FALSE){
+                return FALSE;
+            }
+            return TRUE;
+         }
      }
 
      //deleted Data
