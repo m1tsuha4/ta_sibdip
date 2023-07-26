@@ -84,7 +84,7 @@ class PesertaListAll extends RestController
 					$this->response([
 						'status' => 404,
 						'error' => false,
-						'message' => 'Maaf data peserta pada ' .$judul. ' tidak ada',
+						'message' => 'Maaf data peserta di ' .$judul. ' tidak ada',
 					], RestController::HTTP_BAD_REQUEST);
 				}
 			} else if($isInstructor==1){
@@ -103,7 +103,7 @@ class PesertaListAll extends RestController
 						$this->response([
 							'status' => 404,
 							'error' => false,
-							'message' => 'Maaf data peserta pada ' .$judulDiklat. ' tidak ada',
+							'message' => 'Maaf data peserta di ' .$judulDiklat. ' tidak ada',
 						], RestController::HTTP_BAD_REQUEST);
 					}
 				}
