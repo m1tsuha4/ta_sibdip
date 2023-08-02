@@ -65,9 +65,11 @@ class PesertaListAll extends RestController
 		$isCommitee = $this->users->isCommitee($pegawaiId,$id);
 		$isInstructor = $this->users->isInstructor($pegawaiId,$id);
 
-		$diklatNames = $diklat->getDiklatName($id);
-		if(!empty($diklatNames)){
-			$judulDiklat = $diklatNames[0]['assessment_name'];
+		$listDiklatNameAndTime = $diklat->getDiklatNameAndTime($id);
+		if(!empty($listDiklatNameAndTime)){
+			$judulDiklat = $listDiklatNameAndTime[0]['assessment_name'];
+			$startDiklat = $listDiklatNameAndTime[0]['assessment_date_start'];
+			$finishDiklat = $listDiklatNameAndTime[0]['assessment_date_finish'];
 			if($isCommitee==1){
 				//mendapatkan semua data
 				if ($result_peserta) {
@@ -76,7 +78,12 @@ class PesertaListAll extends RestController
 						'error' => false,
 						'message' => 'Berhasil Mendapatkan Data',
 						'totaldata' => count($result_peserta),
-						'data' => $result_peserta,
+						'data' => [
+							'judul_diklat' => $judulDiklat,
+							'start_diklat' => $startDiklat,
+							'finish_diklat' => $finishDiklat,
+							'list_peserta' => $result_peserta
+						],
 						'action_as' => 'Committee'
 					], RestController::HTTP_OK);
 				} //data tidak ditemukan
@@ -84,7 +91,7 @@ class PesertaListAll extends RestController
 					$this->response([
 						'status' => 404,
 						'error' => false,
-						'message' => 'Maaf data peserta di ' .$judulDiklat. ' belum ada',
+						'message' => 'Maaf data peserta di ' .$judulDiklat. 'belum ada',
 					], RestController::HTTP_BAD_REQUEST);
 				}
 			} else if($isInstructor==1){
@@ -95,7 +102,12 @@ class PesertaListAll extends RestController
 							'error' => false,
 							'message' => 'Berhasil Mendapatkan Data',
 							'totaldata' => count($result_peserta),
-							'data' => $result_peserta,
+							'data' => [
+								'judul_diklat' => $judulDiklat,
+								'start_diklat' => $startDiklat,
+								'finish_diklat' => $finishDiklat,
+								'list_peserta' => $result_peserta
+							],
 							'action_as' => 'Instructor'
 						], RestController::HTTP_OK);
 					} //data tidak ditemukan
