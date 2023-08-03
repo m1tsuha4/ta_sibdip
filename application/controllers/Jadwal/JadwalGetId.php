@@ -20,11 +20,11 @@ class JadwalGetId extends RestController {
     $diklat = new m_diklat;
     $result = $jadwal->GetByIdJadwal($cari);
 
-    $diklatNames = $diklat->getDiklatName($cari);
+    $listDiklatNameAndTime = $diklat->getDiklatNameAndTime($cari);
 
-    if(!empty($diklatNames)){
+    if(!empty($listDiklatNameAndTime)){
         //datanya 1
-        $judulDiklat = $diklatNames[0]['assessment_name'];
+        $judulDiklat = $listDiklatNameAndTime[0]['assessment_name'];
         if (count($result) > 1) {
             $this->response([
                 'status' => 200,
