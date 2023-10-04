@@ -28,7 +28,7 @@ class JadwalUpdated extends RestController {
 			'material_jpl'                => $this->post('material_jpl'),
 			'assistant_jpl'               => $this->post('assistant_jpl'),
 			'eval_instructor'             => $this->post('eval_instructor'),
-			'survey_token'                => $this->post('survey_token'),
+//			'survey_token'                => $this->post('survey_token'),
         ];
 
         $result_update = $jadwal->updatedJadwal($id, $data);

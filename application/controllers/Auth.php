@@ -30,51 +30,84 @@ class Auth extends RestController
         $encrypt_pass = hash('sha512', $password.$this->key);
         $datauser = $this->auth->doLogin($username,  $encrypt_pass);
 
-		if($datauser) {
+		if(isset($datauser[0]->_student)){
+			$id = $datauser[0]->student_id;
+			//$isEmployee = $this->auth->isEmployee($id);
+			//$isStudent = $this->auth->isStudent($id);
+			$payload= [
+				'id' => $datauser[0]->student_id,
+				'nama' => $datauser[0]->fullname,
+				'username' => $datauser[0]->username,
+				'is_employee' => false,//$isEmployee
+				'is_student' => true,//$isStudent
+				'is_admin' => false,
+				'iat' => $date->getTimestamp(), //waktu token digenerate
+				'exp' => $date->getTimestamp() + (60 * 10) //token berlaku 3 menit
+			];
+			$token = JWT::encode($payload, $this->key, 'HS256');
+			$this->response([
+				'status' => true,
+				'message' => 'Login Sukses',
+				'result' => [
+					'id' => $datauser[0]->student_id,
+					'nama' => $datauser[0]->fullname,
+					'username' => $datauser[0]->username,
+					'is_employee' => false,
+					'is_student' => true,
+					'is_admin' => false
+				],
+				'token' => $token
+			], RestController::HTTP_OK);
+		}
+		elseif(isset($datauser[0]->_user)) {
 			$id =  $datauser[0]->pegawai_id;
 			$isCommitee = $this->auth->isCommitee($id);
 			$isInstructor = $this->auth->isInstructor($id);
+			//$isEmployee = $this->auth->isEmployee($id);
+			//$isStudent = $this->auth->isStudent($id);
 			$payload = [
-				'pegawai_id' => $datauser[0]->pegawai_id,
+				'id' => $datauser[0]->pegawai_id,
 				'nama' => $datauser[0]->nama,
 				'username' => $datauser[0]->username,
 				'iat' => $date->getTimestamp(), //waktu token digenerate
 				'exp' => $date->getTimestamp() + (60 * 10) //token berlaku 3 menit
 			];
-			if ($datauser[0]->level == 'admin') {
+
+			if ($datauser[0]->level == 'admin' || $datauser[0]->level == 'adminpd') {
+					$token = JWT::encode($payload, $this->key, 'HS256');
+					$this->response([
+						'status' => true,
+						'message' => 'Login Sukses',
+						'result' => [
+							'id' => $datauser[0]->pegawai_id,
+							'nama' => $datauser[0]->nama,
+							'username' => $datauser[0]->username,
+							'is_employee' => false,
+							'is_student' => false,
+							'is_admin'=> true,
+						],
+						'token' => $token
+					], RestController::HTTP_OK);
+
+			}else if ($datauser[0]->level != 'admin' || $datauser[0]->level == 'adminpd'){
 				if ($isCommitee == 1 || $isInstructor == 1) {
 					$token = JWT::encode($payload, $this->key, 'HS256');
 					$this->response([
 						'status' => true,
-						'message' => 'Login Sukses, tetapi Hak Akses Anda Sebagai Admin akan diabaikan',
+						'message' => 'login berhasil',
 						'result' => [
-							'pegawai_id' => $datauser[0]->pegawai_id,
+							'id' => $datauser[0]->pegawai_id,
 							'nama' => $datauser[0]->nama,
 							'username' => $datauser[0]->username,
+							'is_employee' => true,
+							'is_student' => false,
+							'is_admin'=> false,
 						],
 						'token' => $token
 					], RestController::HTTP_OK);
-				} else {
-					$this->response([
-						'status' => false,
-						'message' => 'Maaf, Mohon Gunakan Aplikasi Admin',
-					], RestController::HTTP_FORBIDDEN);
 				}
-			}else if ($datauser[0]->level != 'admin'){
-				$token = JWT::encode($payload, $this->key, 'HS256');
-				$this->response([
-					'status' => true,
-					'message' => 'login berhasil',
-					'result' => [
-						'pegawai_id' => $datauser[0]->pegawai_id,
-						'nama' => $datauser[0]->nama,
-						'username' => $datauser[0]->username,
-					],
-					'token' => $token
-				], RestController::HTTP_OK);
-			}
-		}
-		else {
+				}
+		} else {
 				$this->response([
 					'status' => false,
 					'message' => 'username dan password Salah',

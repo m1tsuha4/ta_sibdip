@@ -31,7 +31,7 @@ class NilaiUpdated extends RestController {
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'FAILED TO Updated Nilai'
+                'message' => 'FAILED TO Update Nilai'
             ], RestController::HTTP_BAD_REQUEST);
         }
     

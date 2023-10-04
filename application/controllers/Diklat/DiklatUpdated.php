@@ -48,10 +48,10 @@ class DiklatUpdated extends RestController {
 			'assessment_date_added'                 => date('Y-m-d H:i:s', time()),
 			'assessment_date_updated'               => date('Y-m-d H:i:s', time()),
 			'accepted'                              => $this->post('accepted'),
-			'token'                                 => $this->post('token'),
-			'photo_open'                            => $this->post('photo_open'),
-			'photo_middle'                          => $this->post('photo_middle'),
-			'photo_close'                           => $this->post('photo_close'),
+//			'token'                                 => $this->post('token'),
+//			'photo_open'                            => $this->post('photo_open'),
+//			'photo_middle'                          => $this->post('photo_middle'),
+//			'photo_close'                           => $this->post('photo_close'),
 		];
 //		var_dump($data);
 		$update_result = $diklat->updateDiklat($id, $data);

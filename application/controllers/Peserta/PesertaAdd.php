@@ -14,6 +14,7 @@ class PesertaAdd extends RestController {
 		$this->load->model('m_diklat');
         $this->load->model('m_peserta');
         $this->load->library('form_validation');
+		$this->key = '1234567890';
     }
 
 //menambahkan data
@@ -60,15 +61,19 @@ class PesertaAdd extends RestController {
                 $path_file = './'.$path.$uploadData['file_name'];
             }
         }
-
+		$nik = $this->post('nik');
+		$birthday = $this->post('birthday');
+		$formatted_birthday = date('dmY', strtotime($birthday));
+		$password = $formatted_birthday;
+		$encrypt_pass = hash('sha512', $password.$this->key);
         //load Data 
         $insert_data = [
                     'assessment_id'                 => $this->post('assessment_id'),
-                    'nik'                           => $this->post('nik'),
+                    'nik'                           => $nik,
                     'fullname'                      => $this->post('fullname'),
                     'gender'                        => $this->post('gender'),
                     'birthplace'                    => $this->post('birthplace'),
-                    'birthday'                      => $this->post('birthday'),
+                    'birthday'                      => $birthday,
                     'religion'                      => $this->post('religion'),
                     'marital_status'                => $this->post('marital_status'),
                     'address'                       => $this->post('address'),
@@ -86,7 +91,9 @@ class PesertaAdd extends RestController {
                     'graduated'                     => $this->post('graduated'),
                     'avatar'                        => $path_file,
                     'signature'                     => $this->post('signature'),
-                    'student_year'                  => $this->post('student_year')
+                    'student_year'                  => $this->post('student_year'),
+					'username'						=> $nik,
+					'password'						=> $encrypt_pass
         ];
         //Memasukkan Data 
         $result = $peserta->insertPeserta($insert_data);
@@ -183,12 +190,12 @@ class PesertaAdd extends RestController {
         $this->form_validation->set_rules( 'education', 'Pendidikan Terakhir Anda', 'required',
         array('required' => '{field} wajib diisi')
         );
-        $this->form_validation->set_rules( 'department', 'Jurusan Anda', 'required',
+        /*$this->form_validation->set_rules( 'department', 'Jurusan Anda', 'required',
         array('required' => '{field} wajib diisi')
         );
         $this->form_validation->set_rules( 'diploma_year', 'Tahun Ijazah Anda', 'required',
         array('required' => '{field} wajib diisi')
-        );
+        );*/
         $this->form_validation->set_rules( 'student_year', 'Tahun Diklat', 'required',
         array('required' => '{field} wajib diisi')
         );

@@ -69,8 +69,17 @@ class M_Peserta extends CI_Model
      //updated Data
      public function updatedPeserta($id, $data)
      {
+         $this->db->trans_start();
          $this->db->update($this->user_tabel, $data, ['student_id' => $id]);
-         return $this->db->affected_rows();
+         $this->db->trans_complete();
+         if ($this->db->affected_rows() > 0) {
+            return TRUE;
+         }else{
+            if($this->db->trans_status() == FALSE){
+                return FALSE;
+            }
+            return TRUE;
+         }
      }
 
      //deleted Data
@@ -79,4 +88,14 @@ class M_Peserta extends CI_Model
          $this->db->delete($this->user_tabel, ['student_id' => $id]);
          return $this->db->affected_rows();
      }
+
+     public function checkPassword($id,$password){
+		$user = $this->db->get_where($this->user_tabel,['student_id' => $id])->row();
+		if($user){
+			if($password === $user->password){
+				return true;
+			}
+		}
+		return false;
+	}
 }

@@ -11,19 +11,57 @@ class NilaiGetId extends RestController {
         parent::__construct();
         $this->load->model('m_nilai');
 		$this->load->model('m_users');
+		$this->load->model('m_jadwal');
     }
 
     //mendapatkan id
     public function NilaiGetById_get($pegawaiId,$cari)
     {
         $nilai = new m_nilai;
+		$jadwal = new m_jadwal;
+
         $result = $nilai->GetByIdNilai($cari);
-		if(!empty($result)){
-			$id = $result[0]["assessment_id"];
-			$judul = $result[0]["assessment_name"];
+
+		$diklatNames = $jadwal->getDiklatName($cari);
+		if(!empty($diklatNames)){
+			$id = $diklatNames[0]["assessment_id"];
+			$judul = $diklatNames[0]["assessment_name"];
 			$isCommitee = $this->m_users->isCommitee($pegawaiId, $id);
 			$isInstructor = $this->m_users->isInstructor($pegawaiId, $id);
-			if($isCommitee==1){
+			$isAdmin =  $this->m_users->isAdmin($pegawaiId);
+			if($isAdmin==1){
+				//datanya 1
+				if (count($result) > 1) {
+					$this->response([
+						'status' => 200,
+						'error' => "false",
+						'message' => 'Id or Nama Avalaible',
+						'totaldata' => count($result),
+						'data' => $result,
+						'action_as' => 'Admin'
+					], RestController::HTTP_OK);
+				}
+				//kalau nilainya lebih dari 1
+				elseif (count($result) === 1) {
+					$this->response([
+						'status' => 200,
+						'error' => "false",
+						'message' => 'Id tersedia',
+						'totaldata' => count($result),
+						'data' => $result,
+						'action_as' => 'Admin'
+					], RestController::HTTP_OK);
+				}
+				//kalau nilainya tidak ada
+				else {
+					$this->response([
+						'status' => 404,
+						'error' => "true",
+						'message' => 'Maaf data nilai peserta pada materi ' . $judul . ' yang dipilih belum ada',
+					], RestController::HTTP_BAD_REQUEST);
+				}
+			}
+			else if($isCommitee==1){
 				//datanya 1
 				if (count($result) > 1) {
 					$this->response([
@@ -51,7 +89,7 @@ class NilaiGetId extends RestController {
 					$this->response([
 						'status' => 404,
 						'error' => "true",
-						'message' => 'Maaf data materi di diklat' . $judul . ' belum ada',
+						'message' => 'Maaf data nilai peserta pada materi ' . $judul . ' yang dipilih belum ada',
 					], RestController::HTTP_BAD_REQUEST);
 				}
 			} else if ($isInstructor == 1) {
@@ -80,7 +118,7 @@ class NilaiGetId extends RestController {
 						$this->response([
 							'status' => 404,
 							'error' => "true",
-							'message' => 'Maaf data materi di diklat' . $judul . ' belum ada',
+							'message' => 'Maaf data nilai peserta pada materi ' . $judul . ' yang dipilih belum ada',
 						], RestController::HTTP_BAD_REQUEST);
 					}
 				}
@@ -88,7 +126,7 @@ class NilaiGetId extends RestController {
 				$this->response([
 					'status' => 404,
 					'error' => "true",
-					'message' => 'Maaf data materi di diklat' . $judul . ' belum ada',
+					'message' => 'Maaf data nilai peserta pada materi ' . $judul . ' yang dipilih belum ada',
 				], RestController::HTTP_BAD_REQUEST);
 			}
 

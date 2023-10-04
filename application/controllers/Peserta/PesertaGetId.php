@@ -22,7 +22,7 @@ class PesertaGetId extends RestController {
         if (count($result) > 1) {
             $this->response([
                 'status' => 200,
-                'error' => "false",
+                'error' => false,
                 'message' => 'Peserta Available',
                 'totaldata' => count($result),
                 'data' => $result
@@ -32,7 +32,7 @@ class PesertaGetId extends RestController {
         elseif (count($result) === 1) {
             $this->response([
                 'status' => 200,
-                'error' => "false",
+                'error' => false,
                 'message' => 'Peserta Available',
                 'totaldata' => count($result),
                 'data' => $result
@@ -42,7 +42,7 @@ class PesertaGetId extends RestController {
         else {
             $this->response([
                 'status' => 404,
-                'error' => "true",
+                'error' => true,
                 'message' => 'Maaf data peserta tidak ditemukan',
             ], RestController::HTTP_BAD_REQUEST);
         }

@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_Users extends CI_Model
 {
     protected $user_tabel = 'tb_pegawai';
-
+	protected $student_tabel = 'tb_student';
     //mengurutkan id
         public function idterurut($total)
         {
@@ -98,14 +98,26 @@ class M_Users extends CI_Model
 			return false;
 		}
 	}
-	public function countUsername($username){
-		$query = $this->db->query("SELECT COUNT(*) AS username_count FROM tb_pegawai WHERE username = '$username'");
+	public function changePasswordStudent($id, $encrypt_current, $encrypt_new) {
+		$this->db->where('student_id', $id);
+		$this->db->where('password', $encrypt_current);
+		$this->db->update($this->student_tabel, ['password' => $encrypt_new]);
+
+		// Check if update was successful
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public function countUsername($username,$table){
+		$query = $this->db->query("SELECT COUNT(*) AS username_count FROM $table WHERE username = '$username'");
 		$result = $query->row();
 		$usernameCount = $result->username_count;
 		return $usernameCount;
 	}
-	public function countEmail($email){
-		$query = $this->db->query("SELECT COUNT(*) AS email_count FROM tb_pegawai WHERE email = '$email'");
+	public function countEmail($email,$table){
+		$query = $this->db->query("SELECT COUNT(*) AS email_count FROM $table WHERE email = '$email'");
 		$result = $query->row();
 		$emailCount = $result->email_count;
 		return $emailCount;
@@ -114,6 +126,18 @@ class M_Users extends CI_Model
 		$this->db->where('pegawai_id', $id);
 		$this->db->where('password', $encrypt_current);
 		$this->db->update($this->user_tabel, ['username' => $username,'email'=> $email]);
+
+		// Check if update was successful
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public function changeProfileStudent($id,$encrypt_current,$username,$email){
+		$this->db->where('student_id', $id);
+		$this->db->where('password', $encrypt_current);
+		$this->db->update($this->student_tabel, ['username' => $username,'email'=> $email]);
 
 		// Check if update was successful
 		if ($this->db->affected_rows() > 0) {
@@ -134,6 +158,16 @@ class M_Users extends CI_Model
 		$query = $this->db->query($sql)->result_array();
 		$isInstructor = $query[0]['is_instructor'];
 		return $isInstructor;
+	}
+	public function isAdmin($pegawaiId){
+		$sql = "SELECT EXISTS(
+			SELECT pegawai_id FROM tb_pegawai 
+			WHERE pegawai_id = $pegawaiId AND (level = 'admin' OR level = 'adminpd')
+		) AS is_admin;
+		";
+		$query = $this->db->query($sql)->result_array();
+		$isAdmin = $query[0]['is_admin'];
+		return $isAdmin;
 	}
 
     //deleted Data

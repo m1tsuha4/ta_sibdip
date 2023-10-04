@@ -19,16 +19,23 @@ class M_Absen extends CI_Model
              }
          }
 
-    public function getDataAbsen($id,$date)
+    public function getDataAbsen($id)
     {
-		$this->db->select('n.present_id, `n.assessment_id`, `n.student_id`,`n.present_date`, `n.present_status`,
-		`n.present_ket`, s.fullname, s.address');
-		$this->db->from('tb_present n');
-		$this->db->join('tb_student s', 's.student_id = n.student_id');
-		$query = $this->db->get_where('tb_present',['n.assessment_id'=> $id,'n.present_date' => $date]);
-//		$this->db->where('n.present_date', $date);
-//        $query = $this->db->get_where('tb_present',['assessment_id'=>$id]);
-        return $query->result_array();
+//		$this->db->select('n.present_id, `n.assessment_id`, `n.student_id`,`n.present_date`, `n.present_status`,
+//		`n.present_ket`, s.fullname, s.address');
+//		$this->db->from('tb_present n');
+//		$this->db->join('tb_student s', 's.student_id = n.student_id');
+//		$query = $this->db->get_where('tb_present',['n.assessment_id'=> $id,'n.present_date' => $date]);
+////		$this->db->where('n.present_date', $date);
+////        $query = $this->db->get_where('tb_present',['assessment_id'=>$id]);
+//        return $query->result_array();
+		$sql = "SELECT n.present_id, n.assessment_id, a.assessment_name, n.student_id,n.present_date, n.present_status,
+		n.present_ket, n.present_date_updated, s.fullname, s.address FROM tb_present n 
+		INNER JOIN tb_student s ON s.student_id = n.student_id 
+		INNER JOIN tb_assessment a ON n.assessment_id = a.assessment_id 
+		WHERE n.student_id = '$id'";
+		$query = $this->db->query($sql)->result_array();
+		return $query;
     }
 
     public function GetByIdAbsen($id,$date)
@@ -60,6 +67,34 @@ class M_Absen extends CI_Model
 		}
 	}
 
+    public function getAbsenReport($assessmentId){
+        $sql = "SELECT 
+        tb_student.student_id, 
+        tb_student.fullname, 
+        (
+            SELECT IF(tb_present.present_date_updated = '0000-00-00 00:00:00' or tb_present.present_date_updated is null, ' ', tb_present.present_status)
+        ) as status_kehadiran 
+        FROM tb_present 
+        JOIN tb_student ON tb_present.student_id = tb_student.student_id 
+        WHERE tb_present.assessment_id = '$assessmentId'";
+        $result = $this->db->query($sql)->result_array();
+
+        $mapByName = [];
+
+        foreach($result as $element){
+            $mapByName[$element['fullname']][] = $element['status_kehadiran'];
+        };  
+
+     
+        $keys = array_keys($mapByName, true);
+
+        $returnVal = [];
+        foreach($keys as $nama){
+            $returnVal[] = ["fullname" => $nama, "list_absen" => $mapByName[$nama]];
+        }
+    
+        return $returnVal;
+    }
 
     //deleted Data
     public function deletedAbsen($id)

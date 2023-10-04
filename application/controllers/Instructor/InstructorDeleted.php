@@ -15,9 +15,7 @@ class InstructorDeleted extends RestController {
     public function InstructorDeleted_delete($id = null)
     {
         $instructor = new m_instructor;
-        
-        $data_instructor = $this->m_instructor->GetByIdInstructor($id);
-        @unlink($data_instructor[0]['avatar']);
+
         $cekData = $instructor->deletedInstructor($id);
 
         if ($cekData > 0) {

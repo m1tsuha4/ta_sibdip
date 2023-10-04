@@ -60,6 +60,12 @@ public function getDataDiklat()
 		return $query;
 	}
 
+    public function getDiklatNameAndTime($id){
+        $sql = "SELECT assessment_name, assessment_date_start, assessment_date_finish FROM tb_assessment WHERE assessment_id='$id'";
+        $query = $this->db->query($sql)->result_array();
+        return $query;
+    }
+
 
 //insert data
 public function insertDiklat($data)

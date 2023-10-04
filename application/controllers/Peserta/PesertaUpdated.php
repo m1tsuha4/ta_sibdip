@@ -48,7 +48,7 @@ class PesertaUpdated extends RestController {
          }
 
 		$update_data = [
-			'assessment_id'                 => $this->post('assessment_id'),
+			//'assessment_id'                 => $this->post('assessment_id'),
 			'nik'                           => $this->post('nik'),
 			'fullname'                      => $this->post('fullname'),
 			'gender'                        => $this->post('gender'),
@@ -75,9 +75,9 @@ class PesertaUpdated extends RestController {
 			'student_year'                  => $this->post('student_year')
 		];
 
-        $result_update = $peserta->updatedPeserta($id, $update_data);
+        $isSuccess = $peserta->updatedPeserta($id, $update_data);
     
-        if ($result_update > 0) {
+        if ($isSuccess) {
             $this->response([
                 'status' => 200,
                 'error' => null,

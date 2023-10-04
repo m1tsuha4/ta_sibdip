@@ -64,11 +64,14 @@ $route['asisten_deleted/(:any)']                   = 'Asisten/AsistenDeleted/Ass
 $route['asisten_updated/(:any)']                   = 'Asisten/AsistenUpdated/AssistantUpdated/$1';
 
 //Peserta - (belum oke)
-$route['peserta_all_list/(:any)/(:any)']           = 'Peserta/PesertaListAll/index/$1/$2';
-$route['peserta_by_id/(:any)']                     = 'Peserta/PesertaGetId/PesertaGetById/$1';
-$route['peserta_add']                              = 'Peserta/PesertaAdd/AddPeserta';
-$route['peserta_deleted/(:any)']                   = 'Peserta/PesertaDeleted/PesertaDeleted/$1';
-$route['peserta_updated/(:any)']                   = 'Peserta/PesertaUpdated/PesertaUpdated/$1';
+$route['peserta_all_list/(:any)/(:any)']           	= 'Peserta/PesertaListAll/index/$1/$2';
+$route['peserta_by_id/(:any)']                     	= 'Peserta/PesertaGetId/PesertaGetById/$1';
+$route['peserta_add']                              	= 'Peserta/PesertaAdd/AddPeserta';
+$route['peserta_deleted/(:any)']                   	= 'Peserta/PesertaDeleted/PesertaDeleted/$1';
+$route['peserta_updated/(:any)']                   	= 'Peserta/PesertaUpdated/PesertaUpdated/$1';
+$route['peserta_change_password/(:any)']			= 'Peserta/Password/index/$1';
+$route['peserta_change_profile/(:any)']				= 'Peserta/Profile/index/$1';
+$route['user_peserta_updated/(:any)']               = 'Users/UserPesertaUpdated/UserPesertaUpdated/$1';
 
 //Diklat - (update and by id)
 $route['diklat_all_list']                          = 'Diklat/DiklatListAll/index';
@@ -79,18 +82,19 @@ $route['diklat_deleted/(:any)']                    = 'Diklat/DiklatDeleted/Dikla
 $route['diklat_updated/(:any)']                    = 'Diklat/DiklatUpdated/DiklatUpdated/$1'; 
 
 //Jadwal - (oke)
-$route['jadwal_all_list']     						= 'Jadwal/JadwalListAll/index';
-$route['jadwal_by_id/(:any)'] 						= 'Jadwal/JadwalGetId/JadwalGetById/$1';
+$route['jadwal_all_list/(:any)']     				= 'Jadwal/JadwalListAll/index/$1';
+$route['jadwal_by_id/(:any)/(:any)'] 				= 'Jadwal/JadwalGetId/JadwalGetById/$1/$2';
 $route['jadwal_add']          						= 'Jadwal/JadwalAdd/AddJadwal';
 $route['jadwal_deleted/(:any)']						= 'Jadwal/JadwalDeleted/JadwalDeleted/$1';
 $route['jadwal_updated/(:any)']						= 'Jadwal/JadwalUpdated/JadwalUpdated/$1';
 
 //Absen Peserta - (oke)
-$route['absen_all_list/(:any)/(:any)']             = 'Absen/PresenceListAll/index/$1/$2';
+$route['absen_all_list/(:any)']             = 'Absen/PresenceListAll/index/$1';
 $route['absen_by_id/(:any)/(:any)/(:any)']         = 'Absen/PresenceGetId/PresenceGetById/$1/$2/$3';
 $route['absen_add']                                = 'Absen/PresenceAdd/AddPresence';
 $route['absen_deleted/(:any)']                     = 'Absen/PresenceDeleted/PresenceDeleted/$1';
 $route['absen_updated/(:any)']                     = 'Absen/PresenceUpdated/PresenceUpdated/$1'; 
+$route['absen_report/(:any)']                      = 'Absen/PresenceReport/getPresenceReport/$1';
 
 //Nilai Peserta - (oke)
 $route['nilai_all_list/(:any)']                    = 'Nilai/NilaiListAll/index/$1';
@@ -99,6 +103,9 @@ $route['nilai_by_id/(:any)/(:any)']                = 'Nilai/NilaiGetId/NilaiGetB
 $route['nilai_add']                                = 'Nilai/NilaiAdd/AddNilai';
 $route['nilai_deleted/(:any)']                     = 'Nilai/NilaiDeleted/NilaiDeleted/$1';
 $route['nilai_updated/(:any)']                     = 'Nilai/NilaiUpdated/NilaiUpdated/$1'; 
+$route['nilai_report/pretest/(:any)']             = 'Nilai/NilaiReport/getPretestReport/$1';
+$route['nilai_report/posttest/(:any)']             = 'Nilai/NilaiReport/getPostTestReport/$1';
+
 
 //Alamat
 $route['alamat_all_list']                           = 'Alamat/ListAll/index';
@@ -109,3 +116,6 @@ $route['alamat_list_kelurahan/(:any)']              = 'Alamat/ListKelurahan/List
 
 //Company
 $route['list_company']                           = 'Company/ListCompany/index';
+
+//Scheme
+$route['list_scheme']                           = 'Scheme/ListAll/index';

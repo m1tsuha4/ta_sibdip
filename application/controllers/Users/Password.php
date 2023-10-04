@@ -19,15 +19,8 @@ class Password extends RestController
 		$newPassword = $this->input->post('new_password');
 		$confirmPassword = $this->input->post('confirm_password');
 		$encrypt_current = hash('sha512', $currentPassword.$this->key);
-		// Validasi password baru dan konfirmasi password
-		if ($newPassword !== $confirmPassword) {
-			$this->response([
-				'status' => false,
-				'message' => 'New password and confirm password do not match.'
-			], RestController::HTTP_BAD_REQUEST);
-		}
-
 		$encrypt_new = hash('sha512', $newPassword.$this->key);
+
 		$success = $this->m_users->changePassword($id, $encrypt_current, $encrypt_new);
 
 		if ($success > 0) {

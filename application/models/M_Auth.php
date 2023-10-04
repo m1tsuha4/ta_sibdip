@@ -4,20 +4,24 @@ class M_Auth extends CI_Model
 {
 
     private $_user = 'tb_pegawai';
-
+	private $_student = 'tb_student';
     public function doLogin($username, $password)
     {
-        $query = $this->db->get_where($this->_user, 
-        ['username' => $username, 'password' => $password]);
+        $query = $this->db->get_where($this->_user, ['username' => $username, 'password' => $password]);
+		$user_result = $query->result();
 
-        if ($query->num_rows() == 1) {
-            # code...
-            return $query->result();
-        }
-        else 
-        {
-            return false;
-        }
+		$query_student = $this->db->get_where($this->_student, ['username' => $username, 'password' => $password]);
+		$student_result = $query_student->result();
+
+		if (!empty($user_result)) {
+			$user_result[0]->_user = true;
+			return $user_result;
+		} elseif (!empty($student_result)) {
+			$student_result[0]->_student = true;
+			return $student_result;
+		} else {
+			return false;
+		}
     }
 
 	public function isCommitee($id){
@@ -31,6 +35,18 @@ class M_Auth extends CI_Model
 		$query = $this->db->query($sql)->result_array();
 		$isInstructor = $query[0]['is_instructor'];
 		return $isInstructor;
+	}
+	public function isEmployee($id){
+		$sql = "SELECT EXISTS(SELECT pegawai_id FROM tb_pegawai WHERE pegawai_id = $id) AS is_employee;";
+		$query = $this->db->query($sql)->result_array();
+		$isEmployee = $query[0]['is_employee'];
+		return $isEmployee;
+	}
+	public function isStudent($id){
+		$sql = "SELECT EXISTS(SELECT student_id FROM tb_student WHERE student_id = $id) AS is_student;";
+		$query = $this->db->query($sql)->result_array();
+		$isStudent = $query[0]['is_student'];
+		return $isStudent;
 	}
 	public function confirmPassword($password){
 		$this->db->get_where($this->_user,['password'=>$password]);

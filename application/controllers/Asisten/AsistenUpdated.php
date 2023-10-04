@@ -77,6 +77,7 @@ public function AssistantUpdated_post($id)
         $data['special_sub']            = $this->input->post('special_sub', TRUE);
         $data['npwp']                   = $this->input->post('npwp', TRUE);
         $data['no_npwp']                = $this->input->post('no_npwp', TRUE);
+	$data['jenis_kelamin']          = $this->input->post('jenis_kelamin', TRUE);
         $data['date_updated_employee']  = date('Y-m-d H:i:s', time());     
   
     

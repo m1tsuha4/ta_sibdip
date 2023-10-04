@@ -18,8 +18,8 @@ class PresenceUpdated extends RestController {
         $absen = new m_absen;
 
         $data = [
-			'present_status' =>$this->post('present_status'),
-			'present_ket' =>$this->post('present_ket'),
+			'present_status' => $this->post('present_status'),
+			'present_ket' => $this->post('present_ket'),
             'present_date_updated' => date('Y-m-d H:i:s', time())
         ];
 
@@ -28,7 +28,7 @@ class PresenceUpdated extends RestController {
         if ($update_result > 0) {
             $this->response([
                 'status' => true,
-                'message' => 'NEW Absen Updated'
+                'message' => 'Absen Updated'
             ], RestController::HTTP_OK);
         } else {
             $this->response([

@@ -12,10 +12,10 @@ class JadwalListAll extends RestController {
         $this->load->model('m_jadwal');
     }
 
-    public function index_get()
+    public function index_get($id)
     {
         $jadwal = new m_jadwal;
-        $result_jadwal = $jadwal->getDataJadwal();
+        $result_jadwal = $jadwal->getDataJadwal($id);
 
         //mendapatkan semua data
         if ($result_jadwal) {

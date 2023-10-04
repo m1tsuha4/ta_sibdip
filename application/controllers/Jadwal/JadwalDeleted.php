@@ -12,23 +12,24 @@ class JadwalDeleted extends RestController {
         $this->load->model('m_jadwal');
     }
     //menghapus
-    public function JadwalDeleted_delete($id = null)
-    {
-        $jadwal = new m_jadwal;
-    
-        $cekData = $jadwal->deletedJadwal($id);
+	public function JadwalDeleted_delete($id = null)
+	{
+		$jadwal = new m_jadwal;
 
-        if ($cekData > 0) {
-            $this->response([
-                'status' => 200,
-                'error' => null,
-                'message' => 'Jadwal Deleted'
-            ], RestController::HTTP_OK);
-        } else {
-            $this->response([
-                'status' => false,
-                'message' => 'Maaf jadwal tidak ditemukan'
-            ], RestController::HTTP_BAD_REQUEST);
-        }
-    }
+		$cekData = $jadwal->deletedJadwal($id);
+
+		if ($cekData > 0) {
+			$this->response([
+				'status' => 200,
+				'error' => null,
+				'message' => 'Jadwal Deleted'
+			], RestController::HTTP_OK);
+		} else {
+			$this->response([
+				'status' => false,
+				'message' => 'Maaf jadwal tidak ditemukan'
+			], RestController::HTTP_BAD_REQUEST);
+		}
+	}
+
 }

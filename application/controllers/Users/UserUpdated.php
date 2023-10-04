@@ -54,6 +54,12 @@ public function UsersUpdated_post($id)
 				$path_file = './'. $path . $uploadData['file_name'];
 			}
 		}
+		
+		$statusNPWP = 'N';
+		if(!empty($this->post('no_npwp', TRUE))){
+			$statusNPWP = 'Y';
+		}
+		
 		$data = [
 			'avatar' 			=> $path_file,
 			'nik' 				=> $this->post('nik', TRUE),
@@ -77,6 +83,7 @@ public function UsersUpdated_post($id)
 			'tahun_tamat'	 	=> $this->post('tahun_tamat', TRUE),
 			'jurusan' 			=> $this->post('jurusan', TRUE),
 			'email' 			=> $this->post('email', TRUE),
+			'npwp' 				=> $statusNPWP,
 			'date_updated_employee' 	=> date('Y-m-d H:i:s', time()),
 		];
 		$result_update = $users->updatedUsers($id, $data);
@@ -101,10 +108,3 @@ public function UsersUpdated_post($id)
 		}
 	}
 }
-
-
-
-
-
-
-
